@@ -6,8 +6,8 @@
 package test
 
 import (
-	"52lu/go-study-example/app/algorithm"
 	"fmt"
+	"shershon1991/go-study-example/app/algorithm"
 	"sort"
 	"testing"
 	"time"
@@ -167,15 +167,16 @@ type People struct {
 	Age  int
 }
 type listPeople []People
+
 func TestSortStruct(t *testing.T) {
 	l := listPeople{
-		People{Name: "张三", Age:  10},
-		People{Name: "李四", Age:  40},
-		People{Name: "王五", Age:  30},
+		People{Name: "张三", Age: 10},
+		People{Name: "李四", Age: 40},
+		People{Name: "王五", Age: 30},
 	}
 	sort.Slice(l, func(i, j int) bool {
 		// 正序
 		return l[i].Age < l[j].Age
 	})
-	fmt.Printf("%+v\n",l)
+	fmt.Printf("%+v\n", l)
 }

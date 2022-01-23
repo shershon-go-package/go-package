@@ -4,9 +4,9 @@
 package test
 
 import (
-	"52lu/go-study-example/app/goredis"
 	"context"
 	"fmt"
+	"shershon1991/go-study-example/app/goredis"
 	"testing"
 	"time"
 )
@@ -34,6 +34,7 @@ func TestGetAndSet(t *testing.T) {
 	}
 	fmt.Println("Get获取结果: ", result)
 }
+
 // SetNX: 指定的 key 不存在时，为 key 设置指定的值
 func TestSetNx(t *testing.T) {
 	// 连接redis
@@ -52,10 +53,12 @@ func TestSetNx(t *testing.T) {
 		fmt.Println("SetNX abc success :", res)
 	}
 }
+
 // 批量设置和获取
 func TestMGetSet(t *testing.T) {
 	_ = goredis.MGetSet()
 }
+
 // 自增和自减
 func TestIncrAndDecr(t *testing.T) {
 	goredis.UseIncrAndDecr()
@@ -75,6 +78,7 @@ func TestInsertList(t *testing.T) {
 func TestReadList(t *testing.T) {
 	goredis.ReadList()
 }
+
 // 列表删除
 func TestDelList(t *testing.T) {
 	goredis.DelList()

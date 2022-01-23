@@ -6,11 +6,12 @@
 package crypto
 
 import (
-	"52lu/go-study-example/app/crypto"
 	"fmt"
+	"shershon1991/go-study-example/app/crypto"
 	"strings"
 	"testing"
 )
+
 // 加密
 func TestECBEncrypt(t *testing.T) {
 	key := strings.Repeat("a", 16)
@@ -20,6 +21,7 @@ func TestECBEncrypt(t *testing.T) {
 	fmt.Printf("加密数据: %v \n", data)
 	fmt.Printf("加密结果: %v \n", s)
 }
+
 // 解密
 func TestECBDecrypt(t *testing.T) {
 	key := strings.Repeat("a", 16)

@@ -1,11 +1,11 @@
 package test
 
 import (
-	"52lu/go-study-example/app/collyDemo"
 	"fmt"
 	"github.com/gocolly/colly/v2"
 	"github.com/gocolly/colly/v2/debug"
 	"net/http"
+	"shershon1991/go-study-example/app/collyDemo"
 	"testing"
 )
 
@@ -145,6 +145,7 @@ func TestUnmarshal(t *testing.T) {
 	fmt.Printf("book:%+v\n", book)
 	_ = collector.Visit("https://liuqh.icu/a.html")
 }
+
 // 测试提取html.table
 func TestCollectTable(t *testing.T) {
 	collector := colly.NewCollector()
@@ -168,19 +169,19 @@ func TestSelector(t *testing.T) {
 	collector := colly.NewCollector()
 	collector.OnHTML("body", func(element *colly.HTMLElement) {
 		// ID属性选择器,使用#
-		fmt.Printf("ID选择器使用: %v \n",element.ChildText("#title"))
+		fmt.Printf("ID选择器使用: %v \n", element.ChildText("#title"))
 		// Class属性选择器,使用
-		fmt.Printf("class选择器使用1: %v \n",element.ChildText("div[class='desc']"))
-		fmt.Printf("class选择器使用2: %v \n",element.ChildText(".desc"))
+		fmt.Printf("class选择器使用1: %v \n", element.ChildText("div[class='desc']"))
+		fmt.Printf("class选择器使用2: %v \n", element.ChildText(".desc"))
 		// 相邻选择器 prev +  next: 提取 <span>好好学习！</span>
-		fmt.Printf("相邻选择器: %v \n",element.ChildText("div[class='desc'] + span"))
+		fmt.Printf("相邻选择器: %v \n", element.ChildText("div[class='desc'] + span"))
 		// 父子选择器： parent > child,提取:<div class="parent">下所有子元素
-		fmt.Printf("父子选择器: %v \n",element.ChildText("div[class='parent'] > p"))
+		fmt.Printf("父子选择器: %v \n", element.ChildText("div[class='parent'] > p"))
 		// 兄弟选择器 prev ~ next , 提取:<p class="childB">老二</p>
-		fmt.Printf("兄弟选择器: %v \n",element.ChildText("p[class='childA'] ~ p"))
+		fmt.Printf("兄弟选择器: %v \n", element.ChildText("p[class='childA'] ~ p"))
 		// 同时选中多个,用,
-		fmt.Printf("同时选中多个1: %v \n",element.ChildText("span[class='context1'],span[class='context2']"))
-		fmt.Printf("同时选中多个2: %v \n",element.ChildText(".context1,.context2"))
+		fmt.Printf("同时选中多个1: %v \n", element.ChildText("span[class='context1'],span[class='context2']"))
+		fmt.Printf("同时选中多个2: %v \n", element.ChildText(".context1,.context2"))
 	})
 	_ = collector.Visit("https://liuqh.icu/a.html")
 }
@@ -190,36 +191,36 @@ func TestFilterFirstChild(t *testing.T) {
 	collector := colly.NewCollector()
 	collector.OnHTML("body", func(element *colly.HTMLElement) {
 		// 只会筛选父元素下第一个子元素是<p>..</p>
-		fmt.Printf("first-child: %v \n",element.ChildText("p:first-child"))
+		fmt.Printf("first-child: %v \n", element.ChildText("p:first-child"))
 		// 会筛选父元素下第一个子元素类型是<p>..</p>
-		fmt.Printf("first-of-type: %v \n",element.ChildText("p:first-of-type"))
+		fmt.Printf("first-of-type: %v \n", element.ChildText("p:first-of-type"))
 	})
 	_ = collector.Visit("https://liuqh.icu/a.html")
 }
+
 // 过滤器第x个元素
 func TestFilterNth(t *testing.T) {
 	collector := colly.NewCollector()
 	collector.OnHTML("body", func(element *colly.HTMLElement) {
 		//<div class="parent">下的第一个子元素
 		nthChild := element.ChildText("div[class='parent'] > :nth-child(1)")
-		fmt.Printf("nth-child(1): %v \n",nthChild)
+		fmt.Printf("nth-child(1): %v \n", nthChild)
 
 		//<div class="parent">下的第一个p子元素
 		nthOfType := element.ChildText("div[class='parent'] > p:nth-of-type(1)")
-		fmt.Printf("nth-of-type(1): %v \n",nthOfType)
+		fmt.Printf("nth-of-type(1): %v \n", nthOfType)
 
 		// div class="parent">下的最后一个子元素
 		nthLastChild := element.ChildText("div[class='parent'] > :nth-last-child(1)")
-		fmt.Printf("nth-last-child(1): %v \n",nthLastChild)
+		fmt.Printf("nth-last-child(1): %v \n", nthLastChild)
 
 		//<div class="parent">下的最后一个p子元素
 		nthLastOfType := element.ChildText("div[class='parent'] > p:nth-last-of-type(1)")
-		fmt.Printf("nth-last-of-type(1): %v \n",nthLastOfType)
+		fmt.Printf("nth-last-of-type(1): %v \n", nthLastOfType)
 
 	})
 	_ = collector.Visit("https://liuqh.icu/a.html")
 }
-
 
 // 过滤器只有一个元素
 func TestFilterOnly(t *testing.T) {
@@ -227,16 +228,14 @@ func TestFilterOnly(t *testing.T) {
 	collector.OnHTML("body", func(element *colly.HTMLElement) {
 		// 匹配其子元素：有且只有一个标签的
 		onlyChild := element.ChildTexts("div > :only-child")
-		fmt.Printf("onlyChild: %v \n",onlyChild)
+		fmt.Printf("onlyChild: %v \n", onlyChild)
 		// 匹配其子元素：有且只有一个 p 标签的
 		nthOfType := element.ChildTexts("div > p:only-of-type")
-		fmt.Printf("nth-of-type(1): %v \n",nthOfType)
+		fmt.Printf("nth-of-type(1): %v \n", nthOfType)
 
 	})
 	_ = collector.Visit("https://liuqh.icu/a.html")
 }
-
-
 
 func TestFilterContext(t *testing.T) {
 	collector := colly.NewCollector()
@@ -244,8 +243,8 @@ func TestFilterContext(t *testing.T) {
 		// 内容匹配
 		attr1 := element.ChildAttr("a:contains(百度)", "href")
 		attr2 := element.ChildAttr("a:contains(必应)", "href")
-		fmt.Printf("百度: %v \n",attr1)
-		fmt.Printf("必应: %v \n",attr2)
+		fmt.Printf("百度: %v \n", attr1)
+		fmt.Printf("必应: %v \n", attr2)
 	})
 	_ = collector.Visit("https://liuqh.icu/a.html")
 }

@@ -4,10 +4,10 @@
 package tgorm
 
 import (
-	"52lu/go-study-example/app/gorme"
 	"database/sql"
 	"fmt"
 	"gorm.io/gorm"
+	"shershon1991/go-study-example/app/gorme"
 	"testing"
 	"time"
 )
@@ -219,14 +219,14 @@ func TestTransaction(t *testing.T) {
 
 // 手动事务
 func TestUseManualTx(t *testing.T) {
-    // 用户表
+	// 用户表
 	user := gorme.User{NickName: "小丽", Age: 19}
 	// 开启事务
 	tx := mysqlClient.Begin()
 	// 添加用户
 	if err := tx.Create(&user).Error; err != nil {
 		// 遇到错误时回滚事务
-		fmt.Println("添加用户失败: ",err)
+		fmt.Println("添加用户失败: ", err)
 		tx.Rollback()
 	}
 	// 用户地址表
@@ -234,7 +234,7 @@ func TestUseManualTx(t *testing.T) {
 	// 添加用户地址
 	if err := tx.Create(&userAddress).Error; err != nil {
 		// 遇到错误时回滚事务
-		fmt.Println("添加用户地址失败: ",err)
+		fmt.Println("添加用户地址失败: ", err)
 		tx.Rollback()
 	}
 	// 提交事务

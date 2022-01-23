@@ -6,8 +6,8 @@
 package crypto
 
 import (
-	"52lu/go-study-example/app/crypto"
 	"fmt"
+	"shershon1991/go-study-example/app/crypto"
 	"strings"
 	"testing"
 )
@@ -23,6 +23,7 @@ func TestAesEncryptByCTR(t *testing.T) {
 	fmt.Printf("加密结果(hex): %v \n", hex)
 	fmt.Printf("加密结果(base64): %v \n", base64)
 }
+
 // 测试AES-CTR解密
 func TestAesDecryptByCTR(t *testing.T) {
 	key := strings.Repeat("a", 16)

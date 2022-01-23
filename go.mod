@@ -1,4 +1,4 @@
-module 52lu/go-study-example
+module shershon1991/go-study-example
 
 go 1.16
 

@@ -4,8 +4,8 @@
 package tgorm
 
 import (
-	"52lu/go-study-example/app/gorme"
 	"fmt"
+	"shershon1991/go-study-example/app/gorme"
 	"testing"
 )
 
