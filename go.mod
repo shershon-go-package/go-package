@@ -24,7 +24,7 @@ require (
 	github.com/smartystreets/goconvey v1.6.4 // indirect
 	github.com/temoto/robotstxt v1.1.2 // indirect
 	github.com/tidwall/gjson v1.9.4 // indirect
-	github.com/xuri/excelize/v2 v2.4.1
+	github.com/xuri/excelize/v2 v2.5.0
 	go.uber.org/atomic v1.9.0 // indirect
 	go.uber.org/zap v1.17.0
 	golang.org/x/crypto v0.0.0-20210921155107-089bfa567519 // indirect
