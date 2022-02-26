@@ -4,7 +4,7 @@
  * @Date: 2022/02/23 10:38 PM
  */
 
-package fmt_pkg
+package main
 
 import "fmt"
 

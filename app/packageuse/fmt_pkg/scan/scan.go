@@ -4,7 +4,7 @@
  * @Date: 2022/02/23 10:38 PM
  */
 
-package fmt_pkg
+package main
 
 import "fmt"
 
@@ -14,7 +14,7 @@ func main() {
 		age    int64
 		isBody bool
 	)
-	_, err := fmt.Scanf("a:%s b:%d c:%t", &name, &age, &isBody)
+	_, err := fmt.Scan(&name, &age, &isBody)
 	if err != nil {
 		fmt.Println(err.Error())
 		return

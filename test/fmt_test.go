@@ -15,7 +15,7 @@ import (
 func TestOutput2Console1(t *testing.T) {
 	fmt_pkg.Output2Console1()
 	//fmt_pkg.Output2Console2()
-	fmt_pkg.Output2Console3()
+	//fmt_pkg.Output2Console3()
 }
 
 // 输出到文件
