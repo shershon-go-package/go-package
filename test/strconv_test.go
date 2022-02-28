@@ -5,6 +5,7 @@ import (
 	"testing"
 )
 
-func TestParseFloat(t *testing.T) {
-	packageuse.ParseFloat()
+func TestParse(t *testing.T) {
+	//packageuse.ParseFloat()
+	packageuse.ParseInt()
 }
