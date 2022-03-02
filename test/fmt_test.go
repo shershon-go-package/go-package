@@ -13,8 +13,8 @@ import (
 
 // 输出到控制台
 func TestOutput2Console1(t *testing.T) {
-	fmt_pkg.Output2Console1()
-	//fmt_pkg.Output2Console2()
+	//fmt_pkg.Output2Console1()
+	fmt_pkg.Output2Console2()
 	//fmt_pkg.Output2Console3()
 }
 
