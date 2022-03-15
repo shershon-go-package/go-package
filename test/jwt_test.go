@@ -17,9 +17,9 @@ type UserClaims struct {
 	Uid  uint
 }
 
-func (u UserClaims) Valid() error {
-	panic("implement me")
-}
+//func (u UserClaims) Valid() error {
+//	panic("implement me")
+//}
 
 // 创建Jwt
 func TestCreateJWTByNewWithClaims(t *testing.T) {
@@ -29,8 +29,8 @@ func TestCreateJWTByNewWithClaims(t *testing.T) {
 		StandardClaims: &jwt.StandardClaims{
 			// 设置有效期为5分钟
 			ExpiresAt: nowTime.Add(time.Hour * 15).Unix(),
-			Issuer:    "猿码记",          // 签发人
-			IssuedAt:  nowTime.Unix(), //签发时间
+			Issuer:    "Go学习",         // 签发人
+			IssuedAt:  nowTime.Unix(), // 签发时间
 		},
 		Name: "张三",
 		Uid:  100,
@@ -46,7 +46,7 @@ func TestCreateJWTByNewWithClaims(t *testing.T) {
 
 // 解析JWT
 func TestValidJWT(t *testing.T) {
-	jwtStr := "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MjY5MDk0MTYsImlhdCI6MTYyNjg1NTQxNiwiaXNzIjoi54y_56CB6K6wIiwiTmFtZSI6IuW8oOS4iSIsIlVpZCI6MTAwfQ.NG0qvleaLBVLrpOr89Z83c4EaYaVFbCnqY4POdIMuks"
+	jwtStr := "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NDc0MDgxMjMsImlhdCI6MTY0NzM1NDEyMywiaXNzIjoiR2_lrabkuaAiLCJOYW1lIjoi5byg5LiJIiwiVWlkIjoxMDB9.Ftu206lTqHMgMXOnaCwk8yX_t1g84eUfKvs3yvUOzlU"
 	// 解析jwt,第三个参数是个函数，返回生成jwt设置的secret
 	token, err := jwt.ParseWithClaims(jwtStr, &UserClaims{}, func(token *jwt.Token) (interface{}, error) {
 		return []byte("这是我定义的secret"), nil
@@ -62,5 +62,5 @@ func TestValidJWT(t *testing.T) {
 		t.Error("解析失败,Token不合法!")
 		return
 	}
-	fmt.Printf("解析结果: %+v 内嵌: %+v \n", claim,*claim.StandardClaims)
+	fmt.Printf("解析结果: %+v 内嵌: %+v \n", claim, *claim.StandardClaims)
 }
