@@ -1,4 +1,4 @@
-package collyDemo
+package collydemo
 
 import (
 	"fmt"

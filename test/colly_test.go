@@ -5,19 +5,19 @@ import (
 	"github.com/gocolly/colly/v2"
 	"github.com/gocolly/colly/v2/debug"
 	"net/http"
-	"shershon1991/go-study-example/app/collyDemo"
+	"shershon1991/go-study-example/app/collydemo"
 	"testing"
 )
 
 func TestCollyDemo(t *testing.T) {
-	err := collyDemo.RunDemo()
+	err := collydemo.RunDemo()
 	if err != nil {
 		t.Error(err)
 	}
 }
 
 func TestDouBan(t *testing.T) {
-	err := collyDemo.DouBanBook()
+	err := collydemo.DouBanBook()
 	if err != nil {
 		t.Error(err)
 	}
