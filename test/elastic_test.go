@@ -216,46 +216,43 @@ func TestBatchUpdate(t *testing.T) {
 	fmt.Println("更新成功:", do.Updated())
 }
 
-
-
 // 查询单条
 func TestSearchOneEs(t *testing.T) {
-	client,_ := connectEs()
+	client, _ := connectEs()
 	ctx := context.Background()
 	// 查找一条
-	getResult, err := client.Get().Index("go-test").Id("1").Do(ctx)
+	getResult, err := client.Get().Index("go-test").Id("5").Do(ctx)
 	if err != nil {
-		t.Errorf("获取失败: %s",err)
+		t.Errorf("获取失败: %s", err)
 		return
 	}
 	// 提取查询结果(json格式)
 	json, _ := getResult.Source.MarshalJSON()
-	fmt.Printf("查询单条结果:%s \n",json)
+	fmt.Printf("查询单条结果:%s \n", json)
 }
 
 // 查询多条
 func TestSearchMoreES(t *testing.T) {
-	client,_ := connectEs()
+	client, _ := connectEs()
 	ctx := context.Background()
 	searchResult, err := client.Search().Index("go-test").
 		Query(elastic.NewMatchQuery("age", 18)).
-		From(0). //从第几条开始取
+		From(0).  //从第几条开始取
 		Size(10). // 取多少条
 		Pretty(true).
 		Do(ctx)
 	if err != nil {
-		t.Errorf("获取失败: %s",err)
+		t.Errorf("获取失败: %s", err)
 		return
 	}
 	// 定义用户结构体
 	var userList []UserInfo
 	for _, val := range searchResult.Each(reflect.TypeOf(UserInfo{})) {
 		tmp := val.(UserInfo)
-		userList = append(userList,tmp)
+		userList = append(userList, tmp)
 	}
-	fmt.Printf("查询结果:%v\n",userList)
+	fmt.Printf("查询结果:%v\n", userList)
 }
-
 
 //  根据ID删除
 func TestDelById(t *testing.T) {
@@ -264,11 +261,12 @@ func TestDelById(t *testing.T) {
 	// 根据ID删除
 	do, err := client.Delete().Index("go-test").Id("1").Do(ctx)
 	if err != nil {
-		t.Errorf("删除失败:%s",err)
+		t.Errorf("删除失败:%s", err)
 		return
 	}
-	fmt.Println("删除成功: ",do.Result)
+	fmt.Println("删除成功: ", do.Result)
 }
+
 // 根据条件删除
 func TestDelByWhere(t *testing.T) {
 	client, _ := connectEs()
@@ -277,8 +275,8 @@ func TestDelByWhere(t *testing.T) {
 	do, err := client.DeleteByQuery("go-test").Query(elastic.NewTermQuery("age", 18)).
 		ProceedOnVersionConflict().Do(ctx)
 	if err != nil {
-		t.Errorf("删除失败:%s",err)
+		t.Errorf("删除失败:%s", err)
 		return
 	}
-	fmt.Println("删除成功: ",do.Deleted)
+	fmt.Println("删除成功: ", do.Deleted)
 }

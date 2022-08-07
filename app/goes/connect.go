@@ -18,7 +18,7 @@ func ConnectEs() (*elastic.Client, error) {
 		elastic.SetHealthcheckInterval(time.Second*5),
 		// 设置错误日志
 		elastic.SetErrorLog(log.New(os.Stderr, "ES ", log.LstdFlags)),
-		// 设置infor日志
+		// 设置info日志
 		elastic.SetInfoLog(log.New(os.Stdout, " ", log.LstdFlags)),
 	)
 }
