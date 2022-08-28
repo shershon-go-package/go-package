@@ -24,7 +24,7 @@ func TestRead(t *testing.T) {
 		return
 	}
 	for _, row := range rows {
-		fmt.Printf("%+v\n",row)
+		fmt.Printf("%+v\n", row)
 	}
 	fmt.Println("执行完成!")
 }

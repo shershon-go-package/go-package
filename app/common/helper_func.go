@@ -12,6 +12,7 @@ func GenerateChinese() string {
 	}
 	return string(a)
 }
+
 func RandInt(min, max int64) int64 {
 	rand.Seed(time.Now().UnixNano())
 	return min + rand.Int63n(max-min)
@@ -37,6 +38,7 @@ func GenerateName() string {
 	}
 	return firstName[getRandIndex(len(firstName)-1)] + lastName[getRandIndex(len(lastName)-1)]
 }
+
 func getRandIndex(maxNum int) int {
 	rand.Seed(time.Now().UnixNano())
 	return rand.Intn(maxNum)

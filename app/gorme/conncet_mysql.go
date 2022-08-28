@@ -1,5 +1,5 @@
 /**
- * @Author Mr.LiuQH
+ * @Author Shershon
  * @Description 连接数据库
  * @Date 2021/7/8 6:08 下午
  **/

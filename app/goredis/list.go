@@ -20,27 +20,27 @@ func InsertList() {
 		client.LPush(ctx, key, val)
 		// 获取
 		result, _ := client.LRange(ctx, key, 0, -1).Result()
-		fmt.Printf("LPush 从头部插入【%v】: %v\n", val,result)
+		fmt.Printf("LPush 从头部插入【%v】: %v\n", val, result)
 	}
 	// 从列表尾部插入
-	for _,val := range []string{"张三","李四"} {
+	for _, val := range []string{"张三", "李四"} {
 		// 插入尾部(右边)
 		client.RPush(ctx, key, val)
 		// 获取
 		result, _ := client.LRange(ctx, key, 0, -1).Result()
-		fmt.Printf("RPush 从尾部插入【%v】: %v\n", val,result)
+		fmt.Printf("RPush 从尾部插入【%v】: %v\n", val, result)
 	}
 	result, _ := client.LRange(ctx, key, 0, -1).Result()
 	fmt.Printf("当前列表所有值: %+v\n", result)
 
 	// 在指定的值前插入
-	client.LInsertBefore(ctx,key,"php","php5.6")
+	client.LInsertBefore(ctx, key, "php", "php5.6")
 	result, _ = client.LRange(ctx, key, 0, -1).Result()
-	fmt.Printf("在php前插入%v,当前列表所有值: %v\n", "php5.6",result)
+	fmt.Printf("在php前插入%v,当前列表所有值: %v\n", "php5.6", result)
 	// 在指定的值后插入
-	client.LInsertAfter(ctx,key,"go","go1.0")
+	client.LInsertAfter(ctx, key, "go", "go1.0")
 	result, _ = client.LRange(ctx, key, 0, -1).Result()
-	fmt.Printf("在go后插入%v,当前列表所有值: %v\n", "go1.0",result)
+	fmt.Printf("在go后插入%v,当前列表所有值: %v\n", "go1.0", result)
 }
 
 // 列表读取
@@ -68,7 +68,7 @@ func ReadList() {
 	fmt.Printf("获取列表所有[0,-1]元素：%v\n", all)
 }
 
-func DelList()  {
+func DelList() {
 	// 连接redis
 	client, _ := ConnectSingle()
 	ctx := context.Background()

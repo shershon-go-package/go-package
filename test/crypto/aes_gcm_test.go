@@ -1,5 +1,5 @@
 /**
- * @Author Mr.LiuQH
+ * @Author Shershon
  * @Description AES-GCM 测试使用
  * @Date 2021/6/30 4:59 下午
  **/
@@ -7,7 +7,7 @@ package crypto
 
 import (
 	"fmt"
-	"shershon1991/go-study-example/app/crypto"
+	"shershon1991/go-standard-package/app/crypto"
 	"strings"
 	"testing"
 )
@@ -22,5 +22,5 @@ func TestAesGCM(t *testing.T) {
 	fmt.Printf("加密结果: %s \n", gcm)
 	// 解密
 	byGCM := crypto.AesDecryptByGCM(gcm, key)
-	fmt.Printf("解密结果: %s \n",byGCM)
+	fmt.Printf("解密结果: %s \n", byGCM)
 }

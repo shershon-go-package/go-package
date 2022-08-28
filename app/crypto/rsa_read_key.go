@@ -1,5 +1,5 @@
 /**
- * @Author Mr.LiuQH
+ * @Author Shershon
  * @Description rsa密钥对读取
  * @Date 2021/7/1 6:22 下午
  **/
@@ -28,7 +28,6 @@ func ReadRSAPKCS1PrivateKey(path string) (*rsa.PrivateKey, error) {
 	return privateKey, err
 }
 
-
 // 读取PKCS8格式私钥
 func ReadRSAPKCS8PrivateKey(path string) (*rsa.PrivateKey, error) {
 	// 读取文件
@@ -43,7 +42,7 @@ func ReadRSAPKCS8PrivateKey(path string) (*rsa.PrivateKey, error) {
 	// 使用PKCS8解码
 	pkcs8PrivateKey, err := x509.ParsePKCS8PrivateKey(decodeString)
 	if err != nil {
-		return nil,err
+		return nil, err
 	}
 	privateKey := pkcs8PrivateKey.(*rsa.PrivateKey)
 	return privateKey, nil
@@ -51,7 +50,7 @@ func ReadRSAPKCS8PrivateKey(path string) (*rsa.PrivateKey, error) {
 
 // 读取公钥(包含PKCS1和PKCS8)
 func ReadRSAPublicKey(path string) (*rsa.PublicKey, error) {
-	var  err error
+	var err error
 	// 读取文件
 	readFile, err := ioutil.ReadFile(path)
 	if err != nil {
@@ -68,7 +67,7 @@ func ReadRSAPublicKey(path string) (*rsa.PublicKey, error) {
 		pkixPublicKey, err = x509.ParsePKIXPublicKey(pemBlock.Bytes)
 	}
 	if err != nil {
-		return nil,err
+		return nil, err
 	}
 	publicKey := pkixPublicKey.(*rsa.PublicKey)
 	return publicKey, nil

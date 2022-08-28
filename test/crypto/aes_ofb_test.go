@@ -1,5 +1,5 @@
 /**
- * @Author Mr.LiuQH
+ * @Author Shershon
  * @Description AES加密模式CTR-计算器模式-测试使用
  * @Date 2021/6/29 6:04 下午
  **/
@@ -7,7 +7,7 @@ package crypto
 
 import (
 	"fmt"
-	"shershon1991/go-study-example/app/crypto"
+	"shershon1991/go-standard-package/app/crypto"
 	"strings"
 	"testing"
 )

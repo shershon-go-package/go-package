@@ -11,5 +11,3 @@ type T2 struct {
 	Age      float64  `json:"age"`
 	Likes    []string `json:"likes"`
 }
-
-

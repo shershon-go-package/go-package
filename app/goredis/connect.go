@@ -13,7 +13,7 @@ import (
 // 单机连接redis
 func ConnectSingle() (*redis.Client, error) {
 	client := redis.NewClient(&redis.Options{
-		Addr:      "127.0.0.1:6379",
+		Addr: "127.0.0.1:6379",
 	})
 	// 检测是否建立连接(需要传递上下文)
 	timeoutCtx, cancelFunc := context.WithTimeout(context.Background(), time.Second*5)

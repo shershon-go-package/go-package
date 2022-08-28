@@ -1,5 +1,5 @@
 /**
- * @Author Mr.LiuQH
+ * @Author Shershon
  * @Description RSA测试使用
  * @Date 2021/7/1 4:40 下午
  **/
@@ -7,7 +7,7 @@ package crypto
 
 import (
 	"fmt"
-	"shershon1991/go-study-example/app/crypto"
+	"shershon1991/go-standard-package/app/crypto"
 	"testing"
 )
 

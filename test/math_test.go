@@ -5,7 +5,7 @@ package test
 
 import (
 	"fmt"
-	"shershon1991/go-study-example/app/packageuse"
+	"shershon1991/go-standard-package/app/packageuse"
 	"testing"
 )
 

@@ -1,5 +1,5 @@
 /**
- * @Author Mr.LiuQH
+ * @Author Shershon
  * @Description RSA数字签名
  * @Date 2021/7/2 3:01 下午
  **/
@@ -34,7 +34,7 @@ func GetRSASign(data, privateKeyPath string) (string, error) {
 // 验证签名
 func VerifyRsaSign(data, publicKeyPath, base64Sign string) (bool, error) {
 	// 反解base64
-	sign,err := base64.StdEncoding.DecodeString(base64Sign)
+	sign, err := base64.StdEncoding.DecodeString(base64Sign)
 	if err != nil {
 		return false, err
 	}

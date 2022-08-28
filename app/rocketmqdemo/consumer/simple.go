@@ -21,7 +21,7 @@ func Simple() {
 	}
 	err = c.Subscribe("Test", consumer.MessageSelector{},
 		func(ctx context.Context, ext ...*primitive.MessageExt) (consumer.ConsumeResult, error) {
-			for _,msg := range ext {
+			for _, msg := range ext {
 				fmt.Printf("Subscribe result:%s \n", msg)
 			}
 			return consumer.ConsumeSuccess, nil

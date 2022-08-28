@@ -5,7 +5,7 @@ package tgorm
 
 import (
 	"fmt"
-	"shershon1991/go-study-example/app/gorme"
+	"shershon1991/go-standard-package/app/gorme"
 	"testing"
 )
 
@@ -19,5 +19,3 @@ func TestAutoMigrate(t *testing.T) {
 	}
 	fmt.Println("创建表结构完成!")
 }
-
-

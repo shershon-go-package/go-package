@@ -7,7 +7,7 @@
 package test
 
 import (
-	"shershon1991/go-study-example/app/goroutinesync"
+	"shershon1991/go-standard-package/app/goroutinesync"
 	"testing"
 )
 

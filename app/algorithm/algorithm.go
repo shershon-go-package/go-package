@@ -2,7 +2,7 @@ package algorithm
 
 import "fmt"
 
-//SelectSort 选择排序
+// SelectSort 选择排序
 // 基本思想： 选择排序的原理是，对给定的数组进行多次遍历，每次均找出最大的一个值的索引。
 func SelectSort(data []int) []int {
 	// 只有一个不用比较
@@ -31,7 +31,7 @@ func SelectSort(data []int) []int {
 
 // BubbleSort 冒泡排序
 // 对给定的数组进行多次遍历，每次均比较相邻的两个数，如果前一个比后一个大，则交换这两个数。
-//经过第一次遍历之后，最大的数就在最右侧了；第二次遍历之后，第二大的数就在右数第二个位置了；以此类推。
+// 经过第一次遍历之后，最大的数就在最右侧了；第二次遍历之后，第二大的数就在右数第二个位置了；以此类推。
 func BubbleSort(data []int) []int {
 	if len(data) <= 1 {
 		return data
@@ -124,15 +124,15 @@ func BinarySearch(data []int, beginIndex, endIndex, search int) int {
 }
 
 // BinarySearch2 二分查找
-func BinarySearch2(data []int, search int) int  {
+func BinarySearch2(data []int, search int) int {
 	beginIndex := 0
-	endIndex := len(data) -1
-	for beginIndex  <= endIndex {
+	endIndex := len(data) - 1
+	for beginIndex <= endIndex {
 		midIndex := (endIndex + beginIndex) / 2
 		if data[midIndex] == search {
 			return midIndex
 		} else if search < data[midIndex] {
-			endIndex = midIndex -1
+			endIndex = midIndex - 1
 		} else {
 			beginIndex = midIndex + 1
 		}
@@ -140,6 +140,3 @@ func BinarySearch2(data []int, search int) int  {
 
 	return -1
 }
-
-
-

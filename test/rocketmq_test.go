@@ -7,8 +7,8 @@
 package test
 
 import (
-	"shershon1991/go-study-example/app/rocketmqdemo/consumer"
-	"shershon1991/go-study-example/app/rocketmqdemo/producer"
+	"shershon1991/go-standard-package/app/rocketmqdemo/consumer"
+	"shershon1991/go-standard-package/app/rocketmqdemo/producer"
 	"testing"
 )
 

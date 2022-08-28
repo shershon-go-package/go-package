@@ -1,5 +1,5 @@
 /**
- * @Author Mr.LiuQH
+ * @Author Shershon
  * @Description encoding/json 测试使用
  * @Date 2021/7/7 10:41 上午
  **/
@@ -71,15 +71,13 @@ type Bird struct {
 type Category struct {
 	Name string `json:"categoryName"`
 }
+
 // 序列化-匿名字段,有json标签
 func TestAnonymousWithTag(t *testing.T) {
 	b := Bird{
-		Name: "喜鹊",
-		Category:Category{Name: "鸟类"},
+		Name:     "喜鹊",
+		Category: Category{Name: "鸟类"},
 	}
 	jsonByte, _ := json.Marshal(b)
 	fmt.Printf("json: %s \n", jsonByte)
 }
-
-
-

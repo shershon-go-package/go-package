@@ -9,7 +9,7 @@ import (
 // 测试函数Sprintf性能
 func BenchmarkCompute(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		_ = fmt.Sprintf("成绩:%d",80)
+		_ = fmt.Sprintf("成绩:%d", 80)
 	}
 }
 
@@ -17,7 +17,7 @@ func BenchmarkCompute(b *testing.B) {
 func BenchmarkParallel(b *testing.B) {
 	b.RunParallel(func(pb *testing.PB) {
 		for pb.Next() {
-			_ = fmt.Sprintf("成绩:%d",80)
+			_ = fmt.Sprintf("成绩:%d", 80)
 		}
 	})
 }
@@ -29,6 +29,6 @@ func BenchmarkTime(b *testing.B) {
 	// 重置时间
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
-		_ = fmt.Sprintf("hello:%v","word")
+		_ = fmt.Sprintf("hello:%v", "word")
 	}
 }

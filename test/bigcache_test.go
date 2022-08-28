@@ -1,5 +1,5 @@
 /**
- * @Author Mr.LiuQH
+ * @Author Shershon
  * @Description BigCache测试
  * @Date 2021/6/22 7:06 下午
  **/
@@ -151,16 +151,16 @@ func TestLenAndCap(t *testing.T) {
 	fmt.Printf("缓存容量: %d \n", cache.Capacity())
 	fmt.Printf("缓存状态: %+v \n", cache.Stats())
 }
+
 // 重置所有分区的缓存
 func TestReset(t *testing.T) {
 	cache, _ := bigcache.NewBigCache(bigcache.DefaultConfig(time.Minute))
 	for i := 0; i < 10; i++ {
-		k := fmt.Sprintf("key%d",i)
-		_ = cache.Set(k,[]byte(strconv.Itoa(i)))
+		k := fmt.Sprintf("key%d", i)
+		_ = cache.Set(k, []byte(strconv.Itoa(i)))
 	}
 	fmt.Printf("重置前缓存数量: %d \n", cache.Len())
 	// 重置所有分区的缓存
 	_ = cache.Reset()
 	fmt.Printf("重置后缓存数量: %d \n", cache.Len())
 }
-

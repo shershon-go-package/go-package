@@ -1,5 +1,5 @@
 /**
- * @Author Mr.LiuQH
+ * @Author Shershon
  * @Description 排序包测试
  * @Date 2021/6/16 7:26 下午
  **/
@@ -7,7 +7,7 @@ package test
 
 import (
 	"fmt"
-	"shershon1991/go-study-example/app/algorithm"
+	"shershon1991/go-standard-package/app/algorithm"
 	"sort"
 	"testing"
 	"time"

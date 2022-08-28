@@ -6,30 +6,15 @@ import (
 	"github.com/olivere/elastic/v7"
 	"math/rand"
 	"reflect"
+	"shershon1991/go-standard-package/app/goes"
 	"strconv"
 	"testing"
 	"time"
 )
 
-// 连接Es
-func connectEs() (*elastic.Client, error) {
-	return elastic.NewClient(
-		// 设置Elastic服务地址
-		elastic.SetURL("http://127.0.0.1:9200"),
-		// 是否转换请求地址，默认为true,当等于true时 请求http://ip:port/_nodes/http，将其返回的url作为请求路径
-		elastic.SetSniff(false),
-		// 心跳检查,间隔时间
-		elastic.SetHealthcheckInterval(time.Second*5),
-		// 设置错误日志
-		//elastic.SetErrorLog(log.New(os.Stderr, "ES-ERROR ", log.LstdFlags)),
-		// 设置info日志
-		//elastic.SetInfoLog(log.New(os.Stdout, "ES-INFO ", log.LstdFlags)),
-	)
-}
-
 // 测试连接
 func TestConnectES(t *testing.T) {
-	client, err := connectEs()
+	client, err := goes.ConnectEs()
 	if err != nil {
 		t.Error(err)
 		return
@@ -56,7 +41,7 @@ func TestCreateIndexMapping(t *testing.T) {
         }
     }
 }`
-	client, _ := connectEs()
+	client, _ := goes.ConnectEs()
 	// 检测索引是否存在
 	indexName := "go-test"
 	// 创建上下文
@@ -80,7 +65,7 @@ func TestCreateIndexMapping(t *testing.T) {
 
 // 直接创建索引
 func TestCreateIndex(t *testing.T) {
-	client, _ := connectEs()
+	client, _ := goes.ConnectEs()
 	// 检测索引是否存在
 	indexName := "go-test2"
 	// 创建上下文
@@ -107,13 +92,13 @@ type UserInfo struct {
 
 // 单条添加
 func TestAddOne(t *testing.T) {
-	client, _ := connectEs()
+	client, _ := goes.ConnectEs()
 	ctx := context.Background()
 	// 创建userInfo
 	userInfo := UserInfo{
-		Name:  "张三",
 		Age:   18,
 		Birth: "1991-03-04",
+		Name:  "张三",
 	}
 	res, err := client.Index().Index("go-test").Id("1").BodyJson(userInfo).Do(ctx)
 	if err != nil {
@@ -124,7 +109,7 @@ func TestAddOne(t *testing.T) {
 
 // 批量添加
 func TestBatchAdd(t *testing.T) {
-	client, _ := connectEs()
+	client, _ := goes.ConnectEs()
 	ctx := context.Background()
 	// 创建用户
 	userNames := map[string]string{
@@ -161,21 +146,19 @@ func TestBatchAdd(t *testing.T) {
 
 // 通过Script方式更新单个字段
 func TestUpdateOneByScript(t *testing.T) {
-	client, _ := connectEs()
+	client, _ := goes.ConnectEs()
 	ctx := context.Background()
 
 	// 根据id更新
-	res, err := client.Update().Index("go-test").Id("1").
-		Script(elastic.NewScript("ctx._source.birth='1999-09-09'")).Do(ctx)
+	res, err := client.Update().Index("go-test").Id("1").Script(elastic.NewScript("ctx._source.birth='1999-09-09'")).Do(ctx)
 	if err != nil {
 		t.Errorf("根据ID更新单条记录失败:%s", err)
 		return
 	}
 	fmt.Println("根据ID更新成功:", res.Result)
 
-	// 根据条件更新, update .. where name = '阿三'
-	res2, err := client.UpdateByQuery("go-test").Query(elastic.NewTermQuery("name", "小明")).
-		Script(elastic.NewScript("ctx._source.age=22")).ProceedOnVersionConflict().Do(ctx)
+	// 根据条件更新, update .. where name = '张三'
+	res2, err := client.UpdateByQuery("go-test").Query(elastic.NewTermQuery("name", "张三")).Script(elastic.NewScript("ctx._source.age=22")).ProceedOnVersionConflict().Do(ctx)
 	if err != nil {
 		t.Errorf("根据条件更新单条记录失败:%s", err)
 		return
@@ -185,7 +168,7 @@ func TestUpdateOneByScript(t *testing.T) {
 
 // 使用Doc更新多个字段
 func TestUpdateOneByDoc(t *testing.T) {
-	client, _ := connectEs()
+	client, _ := goes.ConnectEs()
 	ctx := context.Background()
 	res, _ := client.Update().Index("go-test").Id("5").Doc(map[string]interface{}{
 		"name": "小白", "age": 30,
@@ -195,7 +178,7 @@ func TestUpdateOneByDoc(t *testing.T) {
 
 // 批量修改
 func TestBatchUpdate(t *testing.T) {
-	client, _ := connectEs()
+	client, _ := goes.ConnectEs()
 	ctx := context.Background()
 	bulkReq := client.Bulk().Index("go-test")
 	for _, id := range []string{"4", "5", "6", "7"} {
@@ -218,10 +201,10 @@ func TestBatchUpdate(t *testing.T) {
 
 // 查询单条
 func TestSearchOneEs(t *testing.T) {
-	client, _ := connectEs()
+	client, _ := goes.ConnectEs()
 	ctx := context.Background()
 	// 查找一条
-	getResult, err := client.Get().Index("go-test").Id("5").Do(ctx)
+	getResult, err := client.Get().Index("go-test").Id("1").Do(ctx)
 	if err != nil {
 		t.Errorf("获取失败: %s", err)
 		return
@@ -233,7 +216,7 @@ func TestSearchOneEs(t *testing.T) {
 
 // 查询多条
 func TestSearchMoreES(t *testing.T) {
-	client, _ := connectEs()
+	client, _ := goes.ConnectEs()
 	ctx := context.Background()
 	searchResult, err := client.Search().Index("go-test").
 		Query(elastic.NewMatchQuery("age", 18)).
@@ -254,9 +237,9 @@ func TestSearchMoreES(t *testing.T) {
 	fmt.Printf("查询结果:%v\n", userList)
 }
 
-//  根据ID删除
+// 根据ID删除
 func TestDelById(t *testing.T) {
-	client, _ := connectEs()
+	client, _ := goes.ConnectEs()
 	ctx := context.Background()
 	// 根据ID删除
 	do, err := client.Delete().Index("go-test").Id("1").Do(ctx)
@@ -269,7 +252,7 @@ func TestDelById(t *testing.T) {
 
 // 根据条件删除
 func TestDelByWhere(t *testing.T) {
-	client, _ := connectEs()
+	client, _ := goes.ConnectEs()
 	ctx := context.Background()
 	// 根据条件删除
 	do, err := client.DeleteByQuery("go-test").Query(elastic.NewTermQuery("age", 18)).

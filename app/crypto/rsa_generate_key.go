@@ -1,5 +1,5 @@
 /**
- * @Author Mr.LiuQH
+ * @Author Shershon
  * @Description 生成rsa私钥和密钥对
  * @Date 2021/7/1 11:10 上午
  **/
@@ -13,8 +13,10 @@ import (
 	"fmt"
 	"os"
 )
+
 // 保存私钥公钥目录
 var savKeyPath string
+
 // 定义结构体保存私钥和公钥
 type KeySaveInfo struct {
 	PrivateKeyPem string
@@ -37,12 +39,12 @@ func GenerateRSAPKCS1Key(size int, savePath string) (KeySaveInfo, error) {
 		return keySaveInfo, fmt.Errorf("size too short size=%d ,bit=%d", size, bitLen)
 	}
 	// 保存私钥
-	err = savePrivateKeyPKCS1(privateKey,&keySaveInfo)
+	err = savePrivateKeyPKCS1(privateKey, &keySaveInfo)
 	if err != nil {
 		return keySaveInfo, err
 	}
 	// 保存公钥
-	err = savePublicKeyPKCS1(privateKey,&keySaveInfo)
+	err = savePublicKeyPKCS1(privateKey, &keySaveInfo)
 	if err != nil {
 		return keySaveInfo, err
 	}
@@ -50,7 +52,7 @@ func GenerateRSAPKCS1Key(size int, savePath string) (KeySaveInfo, error) {
 }
 
 // 私钥以pem格式保存到文件
-func savePrivateKeyPKCS1(privateKey *rsa.PrivateKey,keySaveInfo *KeySaveInfo) error {
+func savePrivateKeyPKCS1(privateKey *rsa.PrivateKey, keySaveInfo *KeySaveInfo) error {
 	// MarshalPKCS1PrivateKey 将 RSA 私钥转换为 PKCS1
 	x509PriKey := x509.MarshalPKCS1PrivateKey(privateKey)
 	// 创建私钥文件，后缀为pem
@@ -68,7 +70,7 @@ func savePrivateKeyPKCS1(privateKey *rsa.PrivateKey,keySaveInfo *KeySaveInfo) er
 }
 
 // 公钥以pem格式保存到文件
-func savePublicKeyPKCS1(privateKey *rsa.PrivateKey,keySaveInfo *KeySaveInfo) error {
+func savePublicKeyPKCS1(privateKey *rsa.PrivateKey, keySaveInfo *KeySaveInfo) error {
 	// MarshalPKCS1PrivateKey 将 RSA 私钥转换为 PKCS1
 	x509PublicKey := x509.MarshalPKCS1PublicKey(&privateKey.PublicKey)
 	// 创建公钥文件

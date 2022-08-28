@@ -10,7 +10,7 @@ const name = "张三"
 
 var age = 10
 
-func Run()  {
-	fmt.Println("name=",name)
-	fmt.Println("age=",age)
+func Run() {
+	fmt.Println("name=", name)
+	fmt.Println("age=", age)
 }

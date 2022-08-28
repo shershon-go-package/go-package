@@ -6,7 +6,7 @@ package test
 import (
 	"context"
 	"fmt"
-	"shershon1991/go-study-example/app/goredis"
+	"shershon1991/go-standard-package/app/goredis"
 	"testing"
 	"time"
 )

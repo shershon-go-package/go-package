@@ -18,7 +18,7 @@ func TestUseTrace(t *testing.T) {
 	for i := 0; i < 100; i++ {
 		data[i] = time.Now()
 	}
-	fmt.Println("len=",len(data))
+	fmt.Println("len=", len(data))
 }
 
 func selectDB() {
@@ -53,12 +53,12 @@ func TestCreateCou(t *testing.T) {
 		wg.Add(1)
 		go func() {
 			defer wg.Done()
-			trace.WithRegion(ctx, fmt.Sprintf("goroutine-%d",gn), func() {
+			trace.WithRegion(ctx, fmt.Sprintf("goroutine-%d", gn), func() {
 				sum := 0
 				for n := 0; n < 1000000; n++ {
 					sum = sum + n
 				}
-				fmt.Println("sum = ",sum)
+				fmt.Println("sum = ", sum)
 			})
 		}()
 	}

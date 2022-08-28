@@ -1,5 +1,5 @@
 /**
- * @Author Mr.LiuQH
+ * @Author Shershon
  * @Description AES加密模式GCM-电码本模式
  * @Date 2021/6/30 4:24 下午
  **/

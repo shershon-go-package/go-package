@@ -17,24 +17,24 @@ func UseIncrAndDecr() {
 	// 自增
 	for i := 1; i <= 5; i++ {
 		// Incr: 每次调用+1
-		client.Incr(ctx,"incr1")
+		client.Incr(ctx, "incr1")
 		// IncrBy: 每次调用+5
-		client.IncrBy(ctx,"incr2",5)
+		client.IncrBy(ctx, "incr2", 5)
 		// IncrByFloat: 每次调用 +0.5
-		client.IncrByFloat(ctx,"incr3",0.5)
+		client.IncrByFloat(ctx, "incr3", 0.5)
 		// 查询缓存
 		result, _ := client.MGet(ctx, "incr1", "incr2", "incr3").Result()
-		fmt.Printf("第%d次自增后查询: %v \n",i,result)
+		fmt.Printf("第%d次自增后查询: %v \n", i, result)
 	}
 	// 自减
 	for i := 1; i <= 5; i++ {
 		// Decr: 每次调用-1
-		client.Decr(ctx,"decr1")
+		client.Decr(ctx, "decr1")
 		// DecrBy: 每次调用-5
-		client.DecrBy(ctx,"decr2",5)
+		client.DecrBy(ctx, "decr2", 5)
 		// 查询缓存
 		result, _ := client.MGet(ctx, "decr1", "decr2").Result()
-		fmt.Printf("第%d次自减后查询: %v \n",i,result)
+		fmt.Printf("第%d次自减后查询: %v \n", i, result)
 	}
 }
 
@@ -58,22 +58,23 @@ func MGetSet() error {
 	fmt.Println("MGet批量获取:", result)
 	return nil
 }
+
 // 删除和追加
-func DelAndAppend()  {
+func DelAndAppend() {
 	client, _ := ConnectSingle()
 	ctx := context.Background()
 	// 删除单个
-	client.Del(ctx,"key1")
+	client.Del(ctx, "key1")
 	// 删除多个
-	client.Del(ctx,"incr1","incr2","incr3")
+	client.Del(ctx, "incr1", "incr2", "incr3")
 
 	// === 追加value 测试使用 ===
-	client.Set(ctx,"key","hello",time.Hour)
+	client.Set(ctx, "key", "hello", time.Hour)
 	// 获取值
-	res1, _ := client.Get(ctx,"key").Result()
-	fmt.Println("追加前的值:",res1)
+	res1, _ := client.Get(ctx, "key").Result()
+	fmt.Println("追加前的值:", res1)
 	// 追加
-	client.Append(ctx,"key"," word")
-	res2, _ := client.Get(ctx,"key").Result()
-	fmt.Println("追加后的值:",res2)
+	client.Append(ctx, "key", " word")
+	res2, _ := client.Get(ctx, "key").Result()
+	fmt.Println("追加后的值:", res2)
 }

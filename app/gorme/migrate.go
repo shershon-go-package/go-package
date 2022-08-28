@@ -18,5 +18,3 @@ func GormAutoMigrate(host, port, use, pass, database string) error {
 	}
 	return nil
 }
-
-
