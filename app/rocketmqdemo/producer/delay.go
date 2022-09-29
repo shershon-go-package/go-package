@@ -1,3 +1,9 @@
+/**
+ * @Author: shershon
+ * @Description:
+ * @Date: 2022/09/29 17:25
+ */
+
 package producer
 
 import (
@@ -10,8 +16,8 @@ import (
 	"time"
 )
 
-// 发送普通消息
-func Simple() {
+// 发送延时消息
+func Delay() {
 	// 初始化生产者
 	newProducer, err := rocketmq.NewProducer(
 		producer.WithNameServer([]string{"127.0.0.1:9876"}),
@@ -36,7 +42,13 @@ func Simple() {
 		os.Exit(1)
 	}
 
-	res, err := newProducer.SendSync(context.Background(), primitive.NewMessage("SimpleTopic", []byte("一条简单消息")))
+	message := primitive.NewMessage("DelayTopic", []byte("一条延时消息"))
+	// WithDelayTimeLevel 设置要消耗的消息延迟时间。参考延迟等级定义：1s 5s 10s 30s 1m 2m 3m 4m 5m 6m 7m 8m 9m 10m 20m 30m 1h 2h
+	// 延迟等级从1开始，例如设置param level=1，则延迟时间为1s。
+	// 这里使用的是延时30s发送
+	message.WithDelayTimeLevel(4)
+
+	res, err := newProducer.SendSync(context.Background(), message)
 	if err != nil {
 		fmt.Printf("消息发送失败 err:%s ", err)
 		os.Exit(1)

@@ -1,3 +1,9 @@
+/**
+ * @Author: shershon
+ * @Description:
+ * @Date: 2022/09/29 17:27
+ */
+
 package consumer
 
 import (
@@ -10,8 +16,8 @@ import (
 	"time"
 )
 
-// 消费普通消息
-func Simple() {
+// 消费事务消息
+func Transaction() {
 	newPushConsumer, err := rocketmq.NewPushConsumer(
 		consumer.WithGroupName("test"),
 		consumer.WithNameServer([]string{"127.0.0.1:9876"}),
@@ -30,7 +36,7 @@ func Simple() {
 		os.Exit(1)
 	}
 
-	err = newPushConsumer.Subscribe("SimpleTopic", consumer.MessageSelector{},
+	err = newPushConsumer.Subscribe("TransactionTopic", consumer.MessageSelector{},
 		func(ctx context.Context, msgs ...*primitive.MessageExt) (consumer.ConsumeResult, error) {
 			for _, msg := range msgs {
 				nowStr := time.Now().Format("2006-01-02 15:04:05")
