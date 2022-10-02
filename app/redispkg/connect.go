@@ -1,7 +1,7 @@
 /**
  * @Description go-redis使用
  **/
-package goredis
+package redispkg
 
 import (
 	"context"

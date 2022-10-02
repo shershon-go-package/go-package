@@ -1,4 +1,4 @@
-package gorme
+package gormpkg
 
 type T struct {
 	Code int    `json:"code"`

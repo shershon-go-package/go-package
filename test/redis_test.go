@@ -6,7 +6,7 @@ package test
 import (
 	"context"
 	"fmt"
-	"shershon1991/go-standard-package/app/goredis"
+	"shershon1991/go-standard-package/app/redispkg"
 	"testing"
 	"time"
 )
@@ -14,7 +14,7 @@ import (
 // Get&Set
 func TestGetAndSet(t *testing.T) {
 	// 使用单机模式连接redis
-	client, err := goredis.ConnectSingle()
+	client, err := redispkg.ConnectSingle()
 	if err != nil {
 		t.Error(err)
 		return
@@ -38,7 +38,7 @@ func TestGetAndSet(t *testing.T) {
 // SetNX: 指定的 key 不存在时，为 key 设置指定的值
 func TestSetNx(t *testing.T) {
 	// 连接redis
-	client, err := goredis.ConnectSingle()
+	client, err := redispkg.ConnectSingle()
 	if err != nil {
 		t.Error(err)
 		return
@@ -56,30 +56,30 @@ func TestSetNx(t *testing.T) {
 
 // 批量设置和获取
 func TestMGetSet(t *testing.T) {
-	_ = goredis.MGetSet()
+	_ = redispkg.MGetSet()
 }
 
 // 自增和自减
 func TestIncrAndDecr(t *testing.T) {
-	goredis.UseIncrAndDecr()
+	redispkg.UseIncrAndDecr()
 }
 
 // 删除和追加
 func TestDelAndAppend(t *testing.T) {
-	goredis.DelAndAppend()
+	redispkg.DelAndAppend()
 }
 
 // 列表插入
 func TestInsertList(t *testing.T) {
-	goredis.InsertList()
+	redispkg.InsertList()
 }
 
 // 列表查找
 func TestReadList(t *testing.T) {
-	goredis.ReadList()
+	redispkg.ReadList()
 }
 
 // 列表删除
 func TestDelList(t *testing.T) {
-	goredis.DelList()
+	redispkg.DelList()
 }

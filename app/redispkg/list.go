@@ -1,7 +1,7 @@
 /**
  * @Description 列表操作
  **/
-package goredis
+package redispkg
 
 import (
 	"context"

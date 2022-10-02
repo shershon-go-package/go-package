@@ -1,4 +1,4 @@
-package goes
+package espkg
 
 import (
 	"github.com/olivere/elastic/v7"

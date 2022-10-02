@@ -3,7 +3,7 @@
  * @Description 连接数据库
  * @Date 2021/7/8 6:08 下午
  **/
-package gorme
+package gormpkg
 
 import (
 	"database/sql"

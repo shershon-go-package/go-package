@@ -1,7 +1,7 @@
 /**
  * @Description 测试使用gorm迁移
  **/
-package gorme
+package gormpkg
 
 // 自动迁移schema,(根据结构体创建或者更新schema)
 func GormAutoMigrate(host, port, use, pass, database string) error {

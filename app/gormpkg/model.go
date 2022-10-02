@@ -1,7 +1,7 @@
 /**
  * @Description 定义model
  **/
-package gorme
+package gormpkg
 
 import (
 	"database/sql"
