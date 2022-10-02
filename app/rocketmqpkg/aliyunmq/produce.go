@@ -10,11 +10,11 @@ import (
 
 func Simple() {
 	// 设置HTTP接入域名（此处以公共云生产环境为例）
-	endpoint := "http://1050827944341157.mqrest.cn-zhangjiakou.aliyuncs.com"
+	endpoint := "******"
 	// AccessKey 阿里云身份验证，在阿里云服务器管理控制台创建
-	accessKey := "LTAI5tBhRwR9dRkQszpY9WVf"
+	accessKey := "******"
 	// SecretKey 阿里云身份验证，在阿里云服务器管理控制台创建
-	secretKey := "dqU38Mgv6ILOqOChldS7AZXmZBYgoO"
+	secretKey := "******"
 	// 所属的 Topic
 	topic := "go-simple-topic"
 	// Topic所属实例ID，默认实例为空
