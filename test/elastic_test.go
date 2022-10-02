@@ -6,7 +6,7 @@ import (
 	"github.com/olivere/elastic/v7"
 	"math/rand"
 	"reflect"
-	"shershon1991/go-standard-package/app/espkg"
+	"shershon1991/go-utils/app/espkg"
 	"strconv"
 	"testing"
 	"time"

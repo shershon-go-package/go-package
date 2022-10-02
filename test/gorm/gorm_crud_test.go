@@ -7,7 +7,7 @@ import (
 	"database/sql"
 	"fmt"
 	"gorm.io/gorm"
-	"shershon1991/go-standard-package/app/gormpkg"
+	"shershon1991/go-utils/app/gormpkg"
 	"testing"
 	"time"
 )

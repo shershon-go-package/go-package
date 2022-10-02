@@ -7,7 +7,7 @@ package test
 
 import (
 	"fmt"
-	"shershon1991/go-standard-package/app/algorithm"
+	"shershon1991/go-utils/app/algorithm"
 	"sort"
 	"testing"
 	"time"

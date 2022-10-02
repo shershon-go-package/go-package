@@ -5,7 +5,7 @@ import (
 	"github.com/gocolly/colly/v2"
 	"github.com/gocolly/colly/v2/debug"
 	"net/http"
-	"shershon1991/go-standard-package/app/collypkg"
+	"shershon1991/go-utils/app/collypkg"
 	"testing"
 )
 

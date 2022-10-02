@@ -7,7 +7,7 @@
 package test
 
 import (
-	"shershon1991/go-standard-package/app/fmtpkg"
+	"shershon1991/go-utils/app/fmtpkg"
 	"testing"
 )
 
