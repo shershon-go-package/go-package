@@ -1,4 +1,4 @@
-module shershon1991/go-standard-package
+module shershon1991/go-tools
 
 go 1.16
 
