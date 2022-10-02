@@ -3,7 +3,7 @@
  * @Description AES加密模式GCM-电码本模式
  * @Date 2021/6/30 4:24 下午
  **/
-package crypto
+package cryptopkg
 
 import (
 	"crypto/aes"

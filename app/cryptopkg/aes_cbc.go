@@ -3,7 +3,7 @@
  * @Description AES加密模式CBC-密码分组链接模式
  * @Date 2021/6/29 5:35 下午
  **/
-package crypto
+package cryptopkg
 
 import (
 	"crypto/aes"

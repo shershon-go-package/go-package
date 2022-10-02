@@ -7,7 +7,7 @@ package crypto
 
 import (
 	"fmt"
-	"shershon1991/go-standard-package/app/crypto"
+	"shershon1991/go-standard-package/app/cryptopkg"
 	"strings"
 	"testing"
 )
@@ -16,7 +16,7 @@ import (
 func TestECBEncrypt(t *testing.T) {
 	key := strings.Repeat("a", 16)
 	data := "hello word"
-	s := crypto.AesEncryptByECB(data, key)
+	s := cryptopkg.AesEncryptByECB(data, key)
 	fmt.Printf("加密密钥: %v \n", key)
 	fmt.Printf("加密数据: %v \n", data)
 	fmt.Printf("加密结果: %v \n", s)
@@ -26,7 +26,7 @@ func TestECBEncrypt(t *testing.T) {
 func TestECBDecrypt(t *testing.T) {
 	key := strings.Repeat("a", 16)
 	data := "mMAsLF/fPBfUrP0mPqZm1w=="
-	s := crypto.AesDecryptByECB(data, key)
+	s := cryptopkg.AesDecryptByECB(data, key)
 	fmt.Printf("解密密钥: %v \n", key)
 	fmt.Printf("解密数据: %v \n", data)
 	fmt.Printf("解密结果: %v \n", s)

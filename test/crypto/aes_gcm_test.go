@@ -7,7 +7,7 @@ package crypto
 
 import (
 	"fmt"
-	"shershon1991/go-standard-package/app/crypto"
+	"shershon1991/go-standard-package/app/cryptopkg"
 	"strings"
 	"testing"
 )
@@ -16,11 +16,11 @@ func TestAesGCM(t *testing.T) {
 	key := strings.Repeat("a", 16)
 	data := "hello word!"
 	// 加密
-	gcm := crypto.AesEncryptByGCM(data, key)
+	gcm := cryptopkg.AesEncryptByGCM(data, key)
 	fmt.Printf("密钥key: %s \n", key)
 	fmt.Printf("加密数据: %s \n", data)
 	fmt.Printf("加密结果: %s \n", gcm)
 	// 解密
-	byGCM := crypto.AesDecryptByGCM(gcm, key)
+	byGCM := cryptopkg.AesDecryptByGCM(gcm, key)
 	fmt.Printf("解密结果: %s \n", byGCM)
 }

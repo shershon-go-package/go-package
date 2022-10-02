@@ -3,7 +3,7 @@
  * @Description 生成rsa私钥和密钥对
  * @Date 2021/7/1 11:10 上午
  **/
-package crypto
+package cryptopkg
 
 import (
 	"crypto/rand"

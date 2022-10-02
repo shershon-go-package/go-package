@@ -5,28 +5,28 @@ package test
 
 import (
 	"fmt"
-	"shershon1991/go-standard-package/app/packageuse"
+	"shershon1991/go-standard-package/app/mathpkg"
 	"testing"
 )
 
 // 取整
 func TestRound(t *testing.T) {
-	packageuse.Round()
+	mathpkg.Round()
 }
 
 // 最大值和最小值
 func TestCompare(t *testing.T) {
-	packageuse.Compare()
+	mathpkg.Compare()
 }
 
 // 取模和取余
 func TestR(t *testing.T) {
-	packageuse.R()
+	mathpkg.R()
 }
 
 // 随机数
 func TestRand(t *testing.T) {
-	packageuse.Rand()
+	mathpkg.Rand()
 }
 
 func TestOther(t *testing.T) {

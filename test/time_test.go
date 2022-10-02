@@ -2,7 +2,7 @@ package test
 
 import (
 	"fmt"
-	"shershon1991/go-standard-package/app/packageuse"
+	"shershon1991/go-standard-package/app/timepkg"
 	"testing"
 	"time"
 )
@@ -28,34 +28,34 @@ func TestGetTime(t *testing.T) {
 	//packageuse.GetTime3()
 	//packageuse.GetTime4()
 	//packageuse.GetTime5()
-	packageuse.GetTime6()
+	timepkg.GetTime6()
 }
 
 // 字符串转时间
 func TestStr2Date(t *testing.T) {
 	//packageuse.Str2Date1()
-	packageuse.Str2Date2()
+	timepkg.Str2Date2()
 }
 
 // 时间比较
 func TestCompareDate(t *testing.T) {
-	packageuse.CompareDate()
+	timepkg.CompareDate()
 }
 
 // 时间计算
 func TestCalculate(t *testing.T) {
 	//packageuse.CalculateDate1()
-	packageuse.CalculateDate2()
+	timepkg.CalculateDate2()
 }
 
 // 定时器
 func TestTicker(t *testing.T) {
 	//packageuse.Ticker1()
-	packageuse.Ticker2()
+	timepkg.Ticker2()
 }
 
 // 延迟执行
 func TestDelayExec(t *testing.T) {
 	//packageuse.DelayExec1()
-	packageuse.DelayExec2()
+	timepkg.DelayExec2()
 }

@@ -7,37 +7,47 @@
 package test
 
 import (
-	"shershon1991/go-standard-package/app/rocketmqpkg/consumer"
-	"shershon1991/go-standard-package/app/rocketmqpkg/producer"
+	"shershon1991/go-standard-package/app/rocketmqpkg"
+	"shershon1991/go-standard-package/app/rocketmqpkg/aliyunmq"
 	"testing"
 )
 
 // 发送普通消息
 func TestSimpleProducer(t *testing.T) {
-	producer.Simple()
+	rocketmqpkg.Simple()
 }
 
 // 消费普通消息
 func TestSimpleConsumer(t *testing.T) {
-	consumer.Simple()
+	rocketmqpkg.ConsumeSimple()
 }
 
 // 发送延时消息
 func TestDelayProducer(t *testing.T) {
-	producer.Delay()
+	rocketmqpkg.Delay()
 }
 
 // 消费延时消息
 func TestDelayConsumer(t *testing.T) {
-	consumer.Delay()
+	rocketmqpkg.ConsumeDelay()
 }
 
 // 发送事务消息
 func TestTransactionProducer(t *testing.T) {
-	producer.Transaction()
+	rocketmqpkg.Transaction()
 }
 
 // 消费事务消息
 func TestTransactionConsumer(t *testing.T) {
-	consumer.Transaction()
+	rocketmqpkg.ConsumeTransaction()
+}
+
+// aliyun-发送普通消息
+func TestAliSimpleProducer(t *testing.T) {
+	aliyunmq.Simple()
+}
+
+// aliyun-消费普通消息
+func TestAliSimpleConsumer(t *testing.T) {
+	aliyunmq.ConsumeSimple()
 }

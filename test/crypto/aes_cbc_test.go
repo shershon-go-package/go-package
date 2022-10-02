@@ -7,7 +7,7 @@ package crypto
 
 import (
 	"fmt"
-	"shershon1991/go-standard-package/app/crypto"
+	"shershon1991/go-standard-package/app/cryptopkg"
 	"strings"
 	"testing"
 )
@@ -18,7 +18,7 @@ func TestAesEncryptByCBC(t *testing.T) {
 	fmt.Printf("key: %v 长度: %d \n", key, len(key))
 	text := "abc"
 	fmt.Printf("带加密文案: %v \n", text)
-	encrypt := crypto.AesEncryptByCBC(text, key)
+	encrypt := cryptopkg.AesEncryptByCBC(text, key)
 	fmt.Printf("加密结果: %v \n", encrypt)
 }
 
@@ -28,6 +28,6 @@ func TestAesDecryptByCBC(t *testing.T) {
 	fmt.Printf("key: %v 长度: %d \n", key, len(key))
 	text := "rMX6r9x+PnTOhfgDH4jjXg=="
 	fmt.Printf("待解密文案: %v \n", text)
-	decrypt := crypto.AesDecryptByCBC(text, key)
+	decrypt := cryptopkg.AesDecryptByCBC(text, key)
 	fmt.Printf("解密结果: %v \n", decrypt)
 }

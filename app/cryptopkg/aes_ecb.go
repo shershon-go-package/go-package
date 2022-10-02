@@ -3,7 +3,7 @@
  * @Description AES加密模式ECB-电码本模式
  * @Date 2021/6/29 5:43 下午
  **/
-package crypto
+package cryptopkg
 
 import (
 	"crypto/aes"

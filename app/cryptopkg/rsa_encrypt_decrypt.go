@@ -3,7 +3,7 @@
  * @Description RSA加解密
  * @Date 2021/7/2 3:33 下午
  **/
-package crypto
+package cryptopkg
 
 import (
 	"crypto/rand"

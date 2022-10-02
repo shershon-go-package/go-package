@@ -6,32 +6,32 @@
 package test
 
 import (
-	"shershon1991/go-standard-package/app/packageuse"
+	"shershon1991/go-standard-package/app/zappkg"
 	"testing"
 )
 
 // 创建日志记录器
 func TestCreateLogger(t *testing.T) {
-	packageuse.CreateLogger()
+	zappkg.CreateLogger()
 }
 
 // 使用默认记录日志
 func TestRecordLogWithDefault(t *testing.T) {
-	packageuse.RecordLogWithDefault()
+	zappkg.RecordLogWithDefault()
 }
 
 // 使用Sugar记录器
 func TestRecordLogWithSuage(t *testing.T) {
-	packageuse.TestRecordLogWithSugar()
+	zappkg.TestRecordLogWithSugar()
 }
 
 // 定制Logger
 func TestCustomLogger(t *testing.T) {
-	//packageuse.Log2File()
-	packageuse.Log2FileAndConsole()
+	//zappkg.Log2File()
+	zappkg.Log2FileAndConsole()
 }
 
 // 文件切割和日志归档
 func TestCutAndArchive(t *testing.T) {
-	packageuse.CutAndArchive()
+	zappkg.CutAndArchive()
 }

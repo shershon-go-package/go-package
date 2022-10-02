@@ -1,9 +1,9 @@
 /**
  * @Author Shershon
- * @Description AES加密模式OFB-输出反馈模式
+ * @Description AES加密模式CFB-密码反馈模式
  * @Date 2021/6/29 5:50 下午
  **/
-package crypto
+package cryptopkg
 
 import (
 	"crypto/aes"
@@ -13,7 +13,7 @@ import (
 )
 
 // 加密 分别返回 hex格式和base64 结果
-func AesEncryptByOFB(data, key string) (string, string) {
+func AesEncryptByCFB(data, key string) (string, string) {
 	// 判断key长度
 	keyLenMap := map[int]struct{}{16: {}, 24: {}, 32: {}}
 	if _, ok := keyLenMap[len(key)]; !ok {
@@ -34,7 +34,7 @@ func AesEncryptByOFB(data, key string) (string, string) {
 	// 补码
 	padding := PKCS7Padding(dataByte, blockSize)
 	// 加密
-	stream := cipher.NewOFB(block, iv)
+	stream := cipher.NewCFBEncrypter(block, iv)
 	// 定义保存结果变量
 	out := make([]byte, len(padding))
 	stream.XORKeyStream(out, padding)
@@ -45,7 +45,7 @@ func AesEncryptByOFB(data, key string) (string, string) {
 }
 
 // 解密
-func AesDecryptByOFB(dataBase64, key string) string {
+func AesDecryptByCFB(dataBase64, key string) string {
 	// 判断key长度
 	keyLenMap := map[int]struct{}{16: {}, 24: {}, 32: {}}
 	if _, ok := keyLenMap[len(key)]; !ok {
@@ -65,7 +65,7 @@ func AesDecryptByOFB(dataBase64, key string) string {
 	// 创建偏移量iv,取秘钥前16个字符
 	iv := []byte(key[:blockSize])
 	// 创建Stream
-	stream := cipher.NewOFB(block, iv)
+	stream := cipher.NewCFBDecrypter(block, iv)
 	// 声明变量
 	out := make([]byte, len(decodeStringByte))
 	// 解密

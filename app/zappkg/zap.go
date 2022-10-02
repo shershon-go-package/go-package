@@ -1,4 +1,4 @@
-package packageuse
+package zappkg
 
 import (
 	"fmt"

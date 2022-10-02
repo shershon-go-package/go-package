@@ -1,4 +1,4 @@
-package fmt_pkg
+package fmtpkg
 
 import (
 	"fmt"

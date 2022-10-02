@@ -1,9 +1,9 @@
 /**
  * @Author Shershon
- * @Description AES加密模式CTR-计算器模式
+ * @Description AES加密模式OFB-输出反馈模式
  * @Date 2021/6/29 5:50 下午
  **/
-package crypto
+package cryptopkg
 
 import (
 	"crypto/aes"
@@ -13,7 +13,7 @@ import (
 )
 
 // 加密 分别返回 hex格式和base64 结果
-func AesEncryptByCTR(data, key string) (string, string) {
+func AesEncryptByOFB(data, key string) (string, string) {
 	// 判断key长度
 	keyLenMap := map[int]struct{}{16: {}, 24: {}, 32: {}}
 	if _, ok := keyLenMap[len(key)]; !ok {
@@ -30,10 +30,11 @@ func AesEncryptByCTR(data, key string) (string, string) {
 	blockSize := block.BlockSize()
 	// 创建偏移量iv,取秘钥前16个字符
 	iv := []byte(key[:blockSize])
+	//fmt.Printf("iv = %s \n",iv)
 	// 补码
 	padding := PKCS7Padding(dataByte, blockSize)
 	// 加密
-	stream := cipher.NewCTR(block, iv)
+	stream := cipher.NewOFB(block, iv)
 	// 定义保存结果变量
 	out := make([]byte, len(padding))
 	stream.XORKeyStream(out, padding)
@@ -44,7 +45,7 @@ func AesEncryptByCTR(data, key string) (string, string) {
 }
 
 // 解密
-func AesDecryptByCTR(dataBase64, key string) string {
+func AesDecryptByOFB(dataBase64, key string) string {
 	// 判断key长度
 	keyLenMap := map[int]struct{}{16: {}, 24: {}, 32: {}}
 	if _, ok := keyLenMap[len(key)]; !ok {
@@ -64,7 +65,7 @@ func AesDecryptByCTR(dataBase64, key string) string {
 	// 创建偏移量iv,取秘钥前16个字符
 	iv := []byte(key[:blockSize])
 	// 创建Stream
-	stream := cipher.NewCTR(block, iv)
+	stream := cipher.NewOFB(block, iv)
 	// 声明变量
 	out := make([]byte, len(decodeStringByte))
 	// 解密
