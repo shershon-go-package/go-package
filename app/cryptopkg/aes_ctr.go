@@ -17,7 +17,7 @@ func AesEncryptByCTR(data, key string) (string, string) {
 	// 判断key长度
 	keyLenMap := map[int]struct{}{16: {}, 24: {}, 32: {}}
 	if _, ok := keyLenMap[len(key)]; !ok {
-		panic("key长度必须是 16、24、32 其中一个")
+		panic(any("key长度必须是 16、24、32 其中一个"))
 	}
 	// 转成byte
 	dataByte := []byte(data)
@@ -25,7 +25,7 @@ func AesEncryptByCTR(data, key string) (string, string) {
 	// 创建block
 	block, err := aes.NewCipher(keyByte)
 	if err != nil {
-		panic(fmt.Sprintf("NewCipher error:%s", err))
+		panic(any(fmt.Sprintf("NewCipher error:%s", err)))
 	}
 	blockSize := block.BlockSize()
 	// 创建偏移量iv,取秘钥前16个字符
@@ -48,17 +48,17 @@ func AesDecryptByCTR(dataBase64, key string) string {
 	// 判断key长度
 	keyLenMap := map[int]struct{}{16: {}, 24: {}, 32: {}}
 	if _, ok := keyLenMap[len(key)]; !ok {
-		panic("key长度必须是 16、24、32 其中一个")
+		panic(any("key长度必须是 16、24、32 其中一个"))
 	}
 	// dataBase64转成[]byte
 	decodeStringByte, err := base64.StdEncoding.DecodeString(dataBase64)
 	if err != nil {
-		panic(fmt.Sprintf("base64 DecodeString error: %s", err))
+		panic(any(fmt.Sprintf("base64 DecodeString error: %s", err)))
 	}
 	// 创建block
 	block, err := aes.NewCipher([]byte(key))
 	if err != nil {
-		panic(fmt.Sprintf("NewCipher error: %s", err))
+		panic(any(fmt.Sprintf("NewCipher error: %s", err)))
 	}
 	blockSize := block.BlockSize()
 	// 创建偏移量iv,取秘钥前16个字符

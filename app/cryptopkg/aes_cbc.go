@@ -16,7 +16,7 @@ func AesEncryptByCBC(str, key string) string {
 	// 判断key长度
 	keyLenMap := map[int]struct{}{16: {}, 24: {}, 32: {}}
 	if _, ok := keyLenMap[len(key)]; !ok {
-		panic("key长度必须是 16、24、32 其中一个")
+		panic(any("key长度必须是 16、24、32 其中一个"))
 	}
 	// 待加密字符串转成byte
 	originDataByte := []byte(str)
@@ -43,7 +43,7 @@ func AesDecryptByCBC(encrypted, key string) string {
 	// 判断key长度
 	keyLenMap := map[int]struct{}{16: {}, 24: {}, 32: {}}
 	if _, ok := keyLenMap[len(key)]; !ok {
-		panic("key长度必须是 16、24、32 其中一个")
+		panic(any("key长度必须是 16、24、32 其中一个"))
 	}
 	// encrypted密文反解base64
 	decodeString, _ := base64.StdEncoding.DecodeString(encrypted)
