@@ -35,7 +35,7 @@ func TestCreateCou(t *testing.T) {
 		fmt.Printf("%v\n", err)
 		return
 	}
-	defer file.Close()
+	//defer file.Close()
 	err = trace.Start(file)
 	if err != nil {
 		fmt.Printf("%v\n", err)

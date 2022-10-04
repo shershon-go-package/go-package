@@ -1,7 +1,7 @@
 package test
 
 import (
-	"shershon1991/go-utils/app/strconvpkg"
+	"shershon1991/go-tools/app/strconvpkg"
 	"testing"
 )
 

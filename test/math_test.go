@@ -5,7 +5,7 @@ package test
 
 import (
 	"fmt"
-	"shershon1991/go-utils/app/mathpkg"
+	"shershon1991/go-tools/app/mathpkg"
 	"testing"
 )
 

@@ -2,7 +2,7 @@ package test
 
 import (
 	"fmt"
-	"shershon1991/go-utils/app/timepkg"
+	"shershon1991/go-tools/app/timepkg"
 	"testing"
 	"time"
 )

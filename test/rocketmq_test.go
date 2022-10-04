@@ -7,8 +7,8 @@
 package test
 
 import (
-	"shershon1991/go-utils/app/rocketmqpkg"
-	"shershon1991/go-utils/app/rocketmqpkg/aliyunmq"
+	"shershon1991/go-tools/app/rocketmqpkg"
+	"shershon1991/go-tools/app/rocketmqpkg/aliyunmq"
 	"testing"
 )
 

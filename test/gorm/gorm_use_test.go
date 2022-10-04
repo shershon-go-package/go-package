@@ -5,7 +5,7 @@ package tgorm
 
 import (
 	"fmt"
-	"shershon1991/go-utils/app/gormpkg"
+	"shershon1991/go-tools/app/gormpkg"
 	"testing"
 )
 
