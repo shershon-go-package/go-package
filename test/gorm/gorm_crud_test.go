@@ -65,25 +65,26 @@ func TestBatchInsert(t *testing.T) {
 func TestGetOne(t *testing.T) {
 	// 定义对应的结构体变量存储结果
 	var firstUser gormpkg.User
-	var taskUser gormpkg.User
+	var takeUser gormpkg.User
 	var lastUser gormpkg.User
 	var result *gorm.DB
 	// 获取第一条记录（主键升序） SELECT * FROM users ORDER BY id LIMIT 1;
 	result = mysqlClient.First(&firstUser)
-	fmt.Printf("First Result: %+v\n", result.RowsAffected)
+	fmt.Printf("Affected Rows: %+v, First Result: %+v\n", result.RowsAffected, firstUser)
 	// 获取一条记录，没有指定排序字段 SELECT * FROM users LIMIT 1;
-	result = mysqlClient.Take(&taskUser)
-	fmt.Printf("Take Result: %+v\n", result.RowsAffected)
+	result = mysqlClient.Take(&takeUser)
+	fmt.Printf("Affected Rows: %+v, Take Result: %+v\n", result.RowsAffected, takeUser)
 	// 获取最后一条记录（主键降序）SELECT * FROM users ORDER BY id DESC LIMIT 1;
 	result = mysqlClient.Last(&lastUser)
-	fmt.Printf("lastUser Result: %+v\n", result.RowsAffected)
+	fmt.Printf("Affected Rows: %+v, LastUser Result: %+v\n", result.RowsAffected, lastUser)
 }
 
 // 使用Find(默认查询的是检索全部)
 func TestGetByFind(t *testing.T) {
 	var userList []gormpkg.User
-	// 指针查询字段
+	// 指定查询字段
 	result := mysqlClient.Select("id", "nick_name").Find(&userList)
+	//fmt.Printf("userList: %+v \n", userList)
 	for _, user := range userList {
 		fmt.Printf("id: %d nick_name: %s \n", user.ID, user.NickName)
 	}
@@ -98,14 +99,14 @@ func TestGetByStringWhere(t *testing.T) {
 	var userList []gormpkg.User
 	var result *gorm.DB
 	// 字符串条件查询一条
-	result = mysqlClient.Where("nick_name = ?", "张三").First(&user)
-	fmt.Printf("Res1: %v err:%v \n", result.RowsAffected, result.Error)
+	result = mysqlClient.Where("nick_name = ?", "李四").First(&user)
+	fmt.Printf("Res1: %v err:%v \n", user, result.Error)
 	// 字符串条件查询多条
-	result = mysqlClient.Where("nick_name <> ?", "张三").Find(&userList)
-	fmt.Printf("Res2: %v err:%v \n", result.RowsAffected, result.Error)
+	result = mysqlClient.Where("nick_name <> ?", "李四").Find(&userList)
+	fmt.Printf("Res2: %v err:%v \n", userList, result.Error)
 	// 多个条件
-	result = mysqlClient.Where("nick_name = ? and age >= ?", "张三", 18).First(&user)
-	fmt.Printf("Res3: %v err:%v \n", result.RowsAffected, result.Error)
+	result = mysqlClient.Where("nick_name = ? and age >= ?", "李四", 18).First(&user)
+	fmt.Printf("Res3: %v err:%v \n", user, result.Error)
 }
 
 // 根据struct和map 条件查询结果
@@ -115,14 +116,14 @@ func TestGetByStructAndMapWhere(t *testing.T) {
 	var userList []gormpkg.User
 	var result *gorm.DB
 	// 结构体条件
-	result = mysqlClient.Where(&gormpkg.User{NickName: "张三", Age: 18}).First(&user)
-	fmt.Printf("结构体条件: %+v err:%v \n", result.RowsAffected, result.Error)
+	result = mysqlClient.Where(&gormpkg.User{NickName: "李四", Age: 18}).First(&user)
+	fmt.Printf("结构体条件: %+v err:%v \n", user, result.Error)
 	// map条件
 	result = mysqlClient.Where(map[string]interface{}{"age": 18}).Find(&userList)
-	fmt.Printf("map条件: %+v err:%v \n", result.RowsAffected, result.Error)
+	fmt.Printf("map条件: %+v err:%v \n", userList, result.Error)
 	// 主键切片
 	result = mysqlClient.Where([]int64{2, 3, 4, 5}).Find(&userList)
-	fmt.Printf("主键切片: %+v err:%v \n", result.RowsAffected, result.Error)
+	fmt.Printf("主键切片: %+v err:%v \n", userList, result.Error)
 }
 
 // 更新单个字段
@@ -130,7 +131,7 @@ func TestUpdateColumn(t *testing.T) {
 	var result *gorm.DB
 	// 字符串条件更新
 	// UPDATE users SET nick_name='张三A', updated_at=当前时间 WHERE nick_name='张三;
-	result = mysqlClient.Model(&gormpkg.User{}).Where("nick_name = ?", "张三").
+	result = mysqlClient.Model(&gormpkg.User{}).Where("nick_name = ?", "李四").
 		Update("nick_name", "张三A")
 	fmt.Printf("条件更新: %+v err:%v \n", result.RowsAffected, result.Error)
 	// 结构体条件更新
@@ -148,7 +149,7 @@ func TestUpdateMultipleColumn(t *testing.T) {
 		"birthday": "1991-01-05",
 	}
 	// UPDATE users SET age=32,birthday='1991-01-05',updated_at=当前时间 WHERE id=6;
-	result = mysqlClient.Model(&gormpkg.User{}).Where("id = ?", 6).Updates(updateMap)
+	result = mysqlClient.Model(&gormpkg.User{}).Where("id = ?", 4).Updates(updateMap)
 	fmt.Printf("使用map结构更新: %+v err:%v \n", result.RowsAffected, result.Error)
 	// 使用结构体(不使用Select)
 	updateUser := gormpkg.User{
@@ -167,9 +168,8 @@ func TestUpdateMultipleColumn(t *testing.T) {
 	// UPDATE users SET birthday='1993-09-09',age=0,updated_at=当前时间 WHERE id=4;
 	result = mysqlClient.Model(&gormpkg.User{}).
 		Select("birthday", "age"). //指定要更新的字段
-		Where("id = ?", 4).Updates(updateUser2)
+		Where("id = ?", 3).Updates(updateUser2)
 	fmt.Printf("使用struct结构更新2: %+v err:%v \n", result.RowsAffected, result.Error)
-
 }
 
 // 删除数据(软删除)

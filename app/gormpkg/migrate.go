@@ -11,8 +11,8 @@ func GormAutoMigrate(host, port, use, pass, database string) error {
 	}
 	// 指定引擎和表备注
 	//err = mysqlByDefault.Set("gorm:table_options", "ENGINE=InnoDB COMMENT='用户地址表'").AutoMigrate(&UserAddress{})
-
-	err = mysqlByDefault.Set("gorm:table_options", "ENGINE=InnoDB COMMENT='用户表'").Migrator().AutoMigrate(&UserList{})
+	//err = mysqlByDefault.Set("gorm:table_options", "ENGINE=InnoDB COMMENT='用户列表'").Migrator().AutoMigrate(&UserList{})
+	err = mysqlByDefault.Set("gorm:table_options", "ENGINE=InnoDB COMMENT='用户表'").Migrator().AutoMigrate(&User{})
 	if err != nil {
 		return err
 	}
