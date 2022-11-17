@@ -16,15 +16,15 @@ import (
 
 func ConsumeSimple() {
 	// 设置HTTP接入域名（此处以公共云生产环境为例）
-	endpoint := "******"
+	endpoint := "http://1050827944341157.mqrest.cn-zhangjiakou.aliyuncs.com"
 	// AccessKey 阿里云身份验证，在阿里云服务器管理控制台创建
-	accessKey := "******"
+	accessKey := "LTAI5tBhRwR9dRkQszpY9WVf"
 	// SecretKey 阿里云身份验证，在阿里云服务器管理控制台创建
-	secretKey := "******"
+	secretKey := "dqU38Mgv6ILOqOChldS7AZXmZBYgoO"
 	// 所属的 Topic
 	topic := "go-simple-topic"
 	// Topic所属实例ID，默认实例为空
-	instanceId := "MQ_INST_1050827944341157_BYOHEv6c"
+	instanceId := "MQ_INST_1050827944341157_BYOV2yYw"
 	// 您在控制台创建的 Consumer ID(Group ID)
 	groupId := "GID_GO_TEST"
 
