@@ -182,7 +182,7 @@ func TestSoftDel(t *testing.T) {
 	result = mysqlClient.Delete(&gormpkg.User{}, []int64{2, 3})
 	fmt.Printf("根据主键切片删除多条: %+v err:%v \n", result.RowsAffected, result.Error)
 	// 根据条件删除
-	result = mysqlClient.Where("age = ?", 0).Delete(&gormpkg.User{})
+	result = mysqlClient.Where("age = ?", 32).Delete(&gormpkg.User{})
 	fmt.Printf("根据条件删除: %+v err:%v \n", result.RowsAffected, result.Error)
 }
 
