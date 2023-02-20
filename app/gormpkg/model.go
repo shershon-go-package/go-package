@@ -29,6 +29,17 @@ type UserAddress struct {
 	Detail   string `gorm:"type:varchar(255);not null;default:'';comment:具体地址"`
 }
 
+// 用户和地址连表模型
+type UserJoinAddress struct {
+	gorm.Model
+	NickName string `gorm:"type:varchar(20);not null;default:'';comment:昵称"`
+	Uid      uint   `gorm:"comment:用户id"`
+	Province string `gorm:"type:varchar(10);not null;default:'';comment:所属省份"`
+	City     string `gorm:"type:varchar(20);not null;default:'';comment:所属城市"`
+	Area     string `gorm:"type:varchar(20);not null;default:'';comment:所属区、县"`
+	Detail   string `gorm:"type:varchar(255);not null;default:'';comment:具体地址"`
+}
+
 type UserList struct {
 	gorm.Model
 	NickName     string         `gorm:"type:varchar(20);not null;default:'';comment:昵称"`

@@ -109,6 +109,28 @@ func TestGetByStringWhere(t *testing.T) {
 	fmt.Printf("Res3: %v err:%v \n", user, result.Error)
 }
 
+// 字符串条件连表查询
+func TestGetUserJoinAddress(t *testing.T) {
+	// 定义对应的结构体变量
+	var userAdd gormpkg.UserJoinAddress
+	var userAddList []gormpkg.UserJoinAddress
+	var result *gorm.DB
+	// 连表查询一条
+	result = mysqlClient.Table("users AS u").
+		Joins("LEFT JOIN user_addresses AS ua ON u.id=ua.uid").
+		Where("u.nick_name = ?", "老王").
+		Select("u.id,u.created_at,u.updated_at,u.deleted_at,u.nick_name,ua.uid,ua.province,ua.city,ua.area,ua.detail").
+		First(&userAdd)
+	fmt.Printf("Res1: %+v err:%+v \n", userAdd, result.Error)
+	// 连表查询多条
+	result = mysqlClient.Table("users AS u").
+		Joins("LEFT JOIN user_addresses AS ua ON u.id=ua.uid").
+		Where("u.id >= ?", 2).
+		Select("u.id,u.created_at,u.updated_at,u.deleted_at,u.nick_name,ua.uid,ua.province,ua.city,ua.area,ua.detail").
+		Find(&userAddList)
+	fmt.Printf("Res2: %+v err:%+v \n", userAddList, result.Error)
+}
+
 // 根据struct和map 条件查询结果
 func TestGetByStructAndMapWhere(t *testing.T) {
 	// 定义对应的结构体变量
