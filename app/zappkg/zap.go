@@ -103,7 +103,7 @@ func Log2FileAndConsole() {
 	logger := zap.New(zcore)
 	defer logger.Sync()
 	// 记录日志
-	logger.Info("同时输出到文件和控制台", zap.String("name", "张三"))
+	logger.Warn("同时输出到文件和控制台", zap.String("name", "张三"))
 }
 
 // 文件切割和日志归档
