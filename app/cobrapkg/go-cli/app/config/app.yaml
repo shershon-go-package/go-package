@@ -1,0 +1,9 @@
+app:
+  version: v1.0.0
+  author: Shershon
+  port: 8080
+mysql:
+  host: 127.0.0.1
+  database: test
+  user: root
+  password: root
