@@ -19,7 +19,7 @@ func init() {
 	// 连接客户端
 	host := "127.0.0.1"
 	user, pass, port, database := "root", "root", "3306", "test"
-	databaseSql, _ := gormpkg.ConnectMysqlByDefault(host, port, user, pass, database)
+	databaseSql, _ := gormpkg.ConnectMysqlByDatabaseSql(host, port, user, pass, database)
 	mysqlClient = databaseSql
 }
 
