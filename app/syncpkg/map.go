@@ -23,7 +23,7 @@ func TestMap1() {
 	fmt.Printf("找到则返回旧值 -> name:%v loaded:%v \n", store, loaded)
 	// 找不到则新增
 	age, loaded := syncMap.LoadOrStore("age", 31)
-	fmt.Printf("找不到则新增 -> name:%v loaded:%v \n", age, loaded)
+	fmt.Printf("找不到则新增 -> age:%v loaded:%v \n", age, loaded)
 }
 
 func TestMap2() {
@@ -44,7 +44,7 @@ func TestMap2() {
 	fmt.Printf("找不到-> val:%v loaded:%v \n", andDelete2, loaded)
 
 	syncMap.Delete("age")
-	searchAge, ok := syncMap.Load("name")
+	searchAge, ok := syncMap.Load("age")
 	fmt.Printf("删除age后查找-> searchAge:%v ok:%v \n", searchAge, ok)
 }
 

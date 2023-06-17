@@ -30,6 +30,7 @@ require (
 	github.com/smartystreets/goconvey v1.6.4 // indirect
 	github.com/spf13/cobra v1.5.0
 	github.com/temoto/robotstxt v1.1.2 // indirect
+	github.com/thoas/go-funk v0.9.3
 	github.com/tidwall/gjson v1.14.3 // indirect
 	github.com/tidwall/pretty v1.2.1 // indirect
 	github.com/valyala/fasthttp v1.40.0 // indirect
