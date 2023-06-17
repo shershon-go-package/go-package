@@ -1,6 +1,6 @@
 /**
  * @Author Shershon
- * @Description AES加密模式ECB测试使用
+ * @Description 加密:AES, 模式:ECB(电码本模式), 填充:Pkcs7, 密文编码:Base64
  * @Date 2021/6/29 5:44 下午
  **/
 package crypto

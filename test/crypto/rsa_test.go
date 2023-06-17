@@ -1,6 +1,6 @@
 /**
  * @Author Shershon
- * @Description RSA测试使用
+ * @Description 加密:RSA, 编码:Base64
  * @Date 2021/7/1 4:40 下午
  **/
 package crypto
@@ -76,7 +76,7 @@ func TestAddSign(t *testing.T) {
 func TestVaSign(t *testing.T) {
 	publicKeyPath := "../../tmp/public_ssl.pem"
 	data := "123456"
-	sign := "QnGqGbIqoHjJG1l+JiaOKWBdX+h00lnKCoO2rTYKIro9hoaDj7nqmu+Mxsuo+2jumicvCNBZNOpMzYryjZf0x7Q4ycLBtqtCWuFRasiInUO7Avy19LRTjdMf2xw9968vilB/xEAQ53JXIDUVvCsMxTfpHI9oRiWEGXWNkhfkjkQ="
+	sign := "Qory6GZxMdDZucpxh8WHgcpmt3nt4hs5t1Ur1543j2K9ot/e4ARAu/0MG1MoIMGWGQ/rwkKzIXHuprLAGOPNg54H/dufPCETVseP+DORJ73d1RvddhpWozNQ89mu1eKVtrj67DBnWV8hXjUo2Hb9Rmts2KwmB5OxtfcOJwRDY5w="
 	verifyRsaSign, err := cryptopkg.VerifyRsaSign(data, publicKeyPath, sign)
 	if err != nil {
 		fmt.Printf("验签失败: %v \n", err)

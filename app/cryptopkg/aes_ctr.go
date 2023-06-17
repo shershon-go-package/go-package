@@ -1,6 +1,6 @@
 /**
  * @Author Shershon
- * @Description AES加密模式CTR-计算器模式
+ * @Description 加密:AES, 模式:CTR(计算器模式), 填充:Pkcs7, 密文编码:Base64
  * @Date 2021/6/29 5:50 下午
  **/
 package cryptopkg

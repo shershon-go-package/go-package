@@ -1,6 +1,6 @@
 /**
  * @Author Shershon
- * @Description AES-GCM 测试使用
+ * @Description 加密:AES, 模式:GCM, 密文编码:Base64
  * @Date 2021/6/30 4:59 下午
  **/
 package crypto

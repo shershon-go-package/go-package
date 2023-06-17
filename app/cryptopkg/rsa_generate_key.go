@@ -56,7 +56,7 @@ func savePrivateKeyPKCS1(privateKey *rsa.PrivateKey, keySaveInfo *KeySaveInfo) e
 	// MarshalPKCS1PrivateKey 将 RSA 私钥转换为 PKCS1
 	x509PriKey := x509.MarshalPKCS1PrivateKey(privateKey)
 	// 创建私钥文件，后缀为pem
-	privateFile := fmt.Sprintf("%s/%s", savKeyPath, "private.pem")
+	privateFile := fmt.Sprintf("%s/%s", savKeyPath, "private_ssl.pem")
 	keySaveInfo.PrivateKeyPem = privateFile
 	fileHandle, err := os.Create(privateFile)
 	if err != nil {
@@ -74,7 +74,7 @@ func savePublicKeyPKCS1(privateKey *rsa.PrivateKey, keySaveInfo *KeySaveInfo) er
 	// MarshalPKCS1PrivateKey 将 RSA 私钥转换为 PKCS1
 	x509PublicKey := x509.MarshalPKCS1PublicKey(&privateKey.PublicKey)
 	// 创建公钥文件
-	publicKeyFile := fmt.Sprintf("%s/%s", savKeyPath, "public.pem")
+	publicKeyFile := fmt.Sprintf("%s/%s", savKeyPath, "public_ssl.pem")
 	keySaveInfo.PublicKeyPem = publicKeyFile
 	fileHandle, err := os.Create(publicKeyFile)
 	if err != nil {

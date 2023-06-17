@@ -1,6 +1,6 @@
 /**
  * @Author Shershon
- * @Description AES加密模式GCM-电码本模式
+ * @Description 加密:AES, 模式:GCM, 密文编码:Base64
  * @Date 2021/6/30 4:24 下午
  **/
 package cryptopkg

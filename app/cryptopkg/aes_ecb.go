@@ -1,6 +1,6 @@
 /**
  * @Author Shershon
- * @Description AES加密模式ECB-电码本模式
+ * @Description 加密:AES, 模式:ECB(电码本模式), 填充:Pkcs7, 密文编码:Base64
  * @Date 2021/6/29 5:43 下午
  **/
 package cryptopkg
@@ -28,7 +28,7 @@ func AesEncryptByECB(data, key string) string {
 	originByte = PKCS7Padding(originByte, blockSize)
 	// 创建保存加密变量
 	encryptResult := make([]byte, len(originByte))
-	// CEB是把整个明文分成若干段相同的小段，然后对每一小段进行加密
+	// ECB是把整个明文分成若干段相同的小段，然后对每一小段进行加密
 	for bs, be := 0, blockSize; bs < len(originByte); bs, be = bs+blockSize, be+blockSize {
 		block.Encrypt(encryptResult[bs:be], originByte[bs:be])
 	}

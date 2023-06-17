@@ -1,6 +1,6 @@
 /**
  * @Author Shershon
- * @Description AES加密模式CTR-计算器模式-测试使用
+ * @Description 加密:AES, 模式:CFB, 填充:Pkcs7, 密文编码:Base64
  * @Date 2021/6/29 6:04 下午
  **/
 package crypto

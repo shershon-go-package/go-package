@@ -1,6 +1,6 @@
 /**
  * @Author Shershon
- * @Description RSA加解密
+ * @Description 加密:RSA, 编码:Base64
  * @Date 2021/7/2 3:33 下午
  **/
 package cryptopkg

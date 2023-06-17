@@ -1,6 +1,6 @@
 module shershon1991/go-tools
 
-go 1.16
+go 1.19
 
 require (
 	github.com/PuerkitoBio/goquery v1.7.1 // indirect
