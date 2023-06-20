@@ -1,6 +1,6 @@
 /**
  * @Author Shershon
- * @Description 加密:AES, 模式:CBC(密码分组链模式), 填充:Pkcs7, 密文编码:Base64
+ * @Description 加密:AES, 模式:CBC(密码分组链模式), 填充:Pkcs7, 偏移量:默认为秘钥, 密文编码:Base64
  * @Date 2021/6/29 5:35 下午
  **/
 package cryptopkg
@@ -16,7 +16,7 @@ func AesEncryptByCBC(str, key string) string {
 	// 判断key长度
 	keyLenMap := map[int]struct{}{16: {}, 24: {}, 32: {}}
 	if _, ok := keyLenMap[len(key)]; !ok {
-		panic(any("key长度必须是 16、24、32 其中一个"))
+		panic("key长度必须是 16、24、32 其中一个")
 	}
 	// 待加密字符串转成byte
 	originDataByte := []byte(str)
@@ -26,10 +26,12 @@ func AesEncryptByCBC(str, key string) string {
 	block, _ := aes.NewCipher(keyByte)
 	// 获取秘钥长度
 	blockSize := block.BlockSize()
+	// 创建偏移量iv,默认等于秘钥
+	iv := []byte(key[:blockSize])
 	// 补码填充
 	originDataByte = PKCS7Padding(originDataByte, blockSize)
 	// 选用加密模式
-	blockMode := cipher.NewCBCEncrypter(block, keyByte[:blockSize])
+	blockMode := cipher.NewCBCEncrypter(block, iv)
 	// 创建数组，存储加密结果
 	encrypted := make([]byte, len(originDataByte))
 	// 加密
@@ -43,7 +45,7 @@ func AesDecryptByCBC(encrypted, key string) string {
 	// 判断key长度
 	keyLenMap := map[int]struct{}{16: {}, 24: {}, 32: {}}
 	if _, ok := keyLenMap[len(key)]; !ok {
-		panic(any("key长度必须是 16、24、32 其中一个"))
+		panic("key长度必须是 16、24、32 其中一个")
 	}
 	// encrypted密文反解base64
 	decodeString, _ := base64.StdEncoding.DecodeString(encrypted)

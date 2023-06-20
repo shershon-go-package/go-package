@@ -1,6 +1,6 @@
 /**
  * @Author Shershon
- * @Description 加密:AES, 模式:OFB, 填充:Pkcs7, 密文编码:Base64
+ * @Description 加密:AES, 模式:OFB, 填充:Pkcs7, 偏移量:默认为秘钥, 密文编码:Base64
  * @Date 2021/6/29 6:04 下午
  **/
 package crypto

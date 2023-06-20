@@ -1,6 +1,6 @@
 /**
  * @Author Shershon
- * @Description 加密:AES, 模式:CBC(密码分组链模式), 填充:Pkcs7, 密文编码:Base64
+ * @Description 加密:AES, 模式:CBC(密码分组链模式), 填充:Pkcs7, 偏移量:默认为秘钥, 密文编码:Base64
  * @Date 2021/6/29 5:40 下午
  **/
 package crypto
@@ -14,9 +14,10 @@ import (
 
 // AES加密
 func TestAesEncryptByCBC(t *testing.T) {
-	key := strings.Repeat("a", 16)
+	//key := strings.Repeat("a", 16)
+	key := "123456789july703"
 	fmt.Printf("key: %v 长度: %d \n", key, len(key))
-	text := "abc"
+	text := "2023-06-20"
 	fmt.Printf("待加密文案: %v \n", text)
 	encrypt := cryptopkg.AesEncryptByCBC(text, key)
 	fmt.Printf("加密结果: %v \n", encrypt)

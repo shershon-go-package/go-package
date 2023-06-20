@@ -1,6 +1,6 @@
 /**
  * @Author Shershon
- * @Description 加密:AES, 模式:CFB, 填充:Pkcs7, 密文编码:Base64
+ * @Description 加密:AES, 模式:CFB, 填充:Pkcs7, 偏移量:默认为秘钥, 密文编码:Base64
  * @Date 2021/6/29 5:50 下午
  **/
 package cryptopkg
@@ -27,8 +27,9 @@ func AesEncryptByCFB(data, key string) (string, string) {
 	if err != nil {
 		panic(fmt.Sprintf("NewCipher error:%s", err))
 	}
+	// 获取秘钥长度
 	blockSize := block.BlockSize()
-	// 创建偏移量iv,取秘钥前16个字符
+	// 创建偏移量iv,默认等于秘钥
 	iv := []byte(key[:blockSize])
 	//fmt.Printf("iv = %s \n",iv)
 	// 补码

@@ -1,6 +1,6 @@
 /**
  * @Author Shershon
- * @Description 加密:AES, 模式:CTR(计算器模式), 填充:Pkcs7, 密文编码:Base64
+ * @Description 加密:AES, 模式:CTR(计算器模式), 填充:Pkcs7, 偏移量:默认为秘钥, 密文编码:Base64
  * @Date 2021/6/29 5:50 下午
  **/
 package cryptopkg
@@ -17,7 +17,7 @@ func AesEncryptByCTR(data, key string) (string, string) {
 	// 判断key长度
 	keyLenMap := map[int]struct{}{16: {}, 24: {}, 32: {}}
 	if _, ok := keyLenMap[len(key)]; !ok {
-		panic(any("key长度必须是 16、24、32 其中一个"))
+		panic("key长度必须是 16、24、32 其中一个")
 	}
 	// 转成byte
 	dataByte := []byte(data)
@@ -25,10 +25,11 @@ func AesEncryptByCTR(data, key string) (string, string) {
 	// 创建block
 	block, err := aes.NewCipher(keyByte)
 	if err != nil {
-		panic(any(fmt.Sprintf("NewCipher error:%s", err)))
+		panic(fmt.Sprintf("NewCipher error:%s", err))
 	}
+	// 获取秘钥长度
 	blockSize := block.BlockSize()
-	// 创建偏移量iv,取秘钥前16个字符
+	// 创建偏移量iv,默认等于秘钥
 	iv := []byte(key[:blockSize])
 	// 补码
 	padding := PKCS7Padding(dataByte, blockSize)
@@ -48,17 +49,17 @@ func AesDecryptByCTR(dataBase64, key string) string {
 	// 判断key长度
 	keyLenMap := map[int]struct{}{16: {}, 24: {}, 32: {}}
 	if _, ok := keyLenMap[len(key)]; !ok {
-		panic(any("key长度必须是 16、24、32 其中一个"))
+		panic("key长度必须是 16、24、32 其中一个")
 	}
 	// dataBase64转成[]byte
 	decodeStringByte, err := base64.StdEncoding.DecodeString(dataBase64)
 	if err != nil {
-		panic(any(fmt.Sprintf("base64 DecodeString error: %s", err)))
+		panic(fmt.Sprintf("base64 DecodeString error: %s", err))
 	}
 	// 创建block
 	block, err := aes.NewCipher([]byte(key))
 	if err != nil {
-		panic(any(fmt.Sprintf("NewCipher error: %s", err)))
+		panic(fmt.Sprintf("NewCipher error: %s", err))
 	}
 	blockSize := block.BlockSize()
 	// 创建偏移量iv,取秘钥前16个字符
