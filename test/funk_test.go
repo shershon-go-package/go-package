@@ -7,7 +7,7 @@
 package test
 
 import (
-	"shershon1991/go-tools/app/funkpkg"
+	"shershon1991/go-package/app/funkpkg"
 	"testing"
 )
 

@@ -6,7 +6,7 @@
 package test
 
 import (
-	"shershon1991/go-tools/app/zappkg"
+	"shershon1991/go-package/app/zappkg"
 	"testing"
 )
 

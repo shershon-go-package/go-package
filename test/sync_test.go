@@ -7,7 +7,7 @@
 package test
 
 import (
-	"shershon1991/go-tools/app/syncpkg"
+	"shershon1991/go-package/app/syncpkg"
 	"testing"
 )
 

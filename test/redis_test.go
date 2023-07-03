@@ -6,7 +6,7 @@ package test
 import (
 	"context"
 	"fmt"
-	"shershon1991/go-tools/app/redispkg"
+	"shershon1991/go-package/app/redispkg"
 	"testing"
 	"time"
 )

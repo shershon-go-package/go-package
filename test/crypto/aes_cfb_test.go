@@ -7,7 +7,7 @@ package crypto
 
 import (
 	"fmt"
-	"shershon1991/go-tools/app/cryptopkg"
+	"shershon1991/go-package/app/cryptopkg"
 	"strings"
 	"testing"
 )

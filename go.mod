@@ -1,4 +1,4 @@
-module shershon1991/go-tools
+module shershon1991/go-package
 
 go 1.19
 
