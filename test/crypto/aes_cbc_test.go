@@ -17,7 +17,7 @@ func TestAesEncryptByCBC(t *testing.T) {
 	//key := strings.Repeat("a", 16)
 	key := "123456789july703"
 	fmt.Printf("key: %v 长度: %d \n", key, len(key))
-	text := "2023-06-20"
+	text := "2023-12-08"
 	fmt.Printf("待加密文案: %v \n", text)
 	encrypt := cryptopkg.AesEncryptByCBC(text, key)
 	fmt.Printf("加密结果: %v \n", encrypt)
